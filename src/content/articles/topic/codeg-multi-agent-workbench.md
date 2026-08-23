@@ -132,3 +132,23 @@ pub async fn delegate_subtask(&self, target: AgentId, prompt: String) -> Result<
 ## 11. 结尾寄语
 
 多智能体协作正在开启软件工程的新范式。保持好奇，用清醒的工程审美掌控 AI 时代的工具链！
+
+---
+
+## 12. 参考资料与延伸阅读
+
+### 本文事实来源
+
+- [Codeg 官方源码仓库](https://github.com/xintaofei/codeg) — 项目功能、支持的 Agent、部署方式、移动端与隐私说明的主要核验来源。
+- [Codeg 官方文档](https://docs.codeg.app) — 安装、配置、使用指南与功能参考。
+- [Codeg Releases](https://github.com/xintaofei/codeg/releases) — 版本发布记录与可下载构建。
+- [Codeg Apache 2.0 许可证](https://github.com/xintaofei/codeg/blob/main/LICENSE) — 开源许可原文。
+- [Agent Client Protocol：协议概览](https://github.com/agentclientprotocol/agent-client-protocol/blob/main/docs/protocol/v2/overview.mdx) — ACP 的通信模型、会话与事件流规范。
+- [Git Worktree 官方文档](https://git-scm.com/docs/git-worktree.html) — 多工作树的原理、命令与边界。
+
+### 相关观看入口
+
+- [Bilibili：别再开 8 个终端了，Codeg 把 14 个 Agent 变成开发小队](https://www.bilibili.com/video/BV1zn8A6nEVR/)
+- [YouTube：Codeg 多 Agent 开发工作台专题](https://youtu.be/iivUmqbaJkM)
+
+> 资料核验日期：2026-08-23。Codeg 仍在快速更新，Agent 清单和具体功能请以官方仓库与文档的最新版本为准。
