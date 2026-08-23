@@ -41,6 +41,10 @@ function requireEnvironment(name) {
   return value;
 }
 
+function toCloudflareTimestamp(date) {
+  return date.toISOString().replace(/\.\d{3}Z$/, "Z");
+}
+
 function formatGroups(groups, directFallback = false) {
   return groups.slice(0, 10).map((group) => ({
     name: group.dimensions?.metric?.trim() || (directFallback ? "直接访问" : "（未知）"),
@@ -205,8 +209,8 @@ async function main() {
 
   const untilDate = new Date();
   const sinceDate = new Date(untilDate.getTime() - options.hours * 60 * 60 * 1000);
-  const since = sinceDate.toISOString();
-  const until = untilDate.toISOString();
+  const since = toCloudflareTimestamp(sinceDate);
+  const until = toCloudflareTimestamp(untilDate);
   const data = await queryAnalytics({
     token: requireEnvironment("CLOUDFLARE_API_TOKEN"),
     accountId: requireEnvironment("CLOUDFLARE_ACCOUNT_ID"),
