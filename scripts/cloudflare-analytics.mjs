@@ -121,6 +121,10 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
   ) {
     viewer {
       accounts(filter: { accountTag: $accountTag }) {
+        sites: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 100, orderBy: [$order]) {
+          count
+          dimensions { siteTag }
+        }
         total: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 1) {
           count
           sum { visits }
@@ -179,6 +183,13 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
   const account = payload.data?.viewer?.accounts?.[0];
   if (!account) {
     throw new Error("Cloudflare Analytics API 未返回目标帐户，请检查 Token 的帐户范围");
+  }
+  const activeSiteTags = new Set((account.sites ?? []).map((group) => group.dimensions?.siteTag).filter(Boolean));
+  if (!activeSiteTags.has(siteTag)) {
+    throw new Error("Cloudflare Analytics API 未返回目标 Web Analytics 站点");
+  }
+  if (activeSiteTags.size > 1) {
+    throw new Error("帐户中存在多个活跃 Web Analytics 站点，请先为报告增加域名过滤条件");
   }
   return account;
 }
