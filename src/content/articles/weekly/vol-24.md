@@ -8,7 +8,7 @@ issue: "VOL.24 · 2026.05.30—06.08"
 eyebrow: "一周 AI 脉络"
 tags: ["AI周报", "大模型", "开源生态", "Agent"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 7
 ---
 > **导语**：AI周报，一周AI脉络。这期二十七条，不按流水账，先看四条主线。
@@ -87,7 +87,7 @@ mindmap
 
 ---
 
-### 05. [字节扣子 3.0：手机远程遥控电脑里的 Agent](#)
+### 05. [字节扣子 3.0：手机远程遥控电脑里的 Agent](https://docs.coze.cn/cozespace_coze_app_faq)
 - **发布主体**：字节 · 扣子 3.0
 - **核心事实**：扣子 3.0 把电脑、手机、桌面三端打通，能用手机远程遥控你电脑里的 agent 干活。
 - **行业影响**：这是国产 agent 产品形态上比较激进的一步。
@@ -143,7 +143,7 @@ mindmap
 
 - **[DragOn](https://arxiv.org/abs/2606.06322)**：GUI agent 评测新基准：点按钮之外补上拖拽、选区、缩放——28.6 万截图、350 万任务 *(arXiv)*
 - **[Agent Memory](https://arxiv.org/abs/2606.06448)**：第一篇从系统视角刻画 agent 记忆的论文：把存储、检索、更新的成本逐项拆开算账 *(arXiv)*
-- **[ToolChoiceConfusion](https://arxiv.org/abs/2606.06448)**：工具给多了反而出错：只暴露当前步骤的最小工具集，调用更稳、token 更省 *(arXiv)*
+- **[ToolChoiceConfusion](https://arxiv.org/abs/2606.06284)**：工具给多了反而出错：只暴露当前步骤的最小工具集，调用更稳、token 更省 *(arXiv)*
 
 ### 📌 行业与人事 · 高门槛
 

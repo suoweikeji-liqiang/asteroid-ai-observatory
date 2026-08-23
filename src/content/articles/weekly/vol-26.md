@@ -8,10 +8,10 @@ issue: "VOL.26 · 2026.06.13—06.20"
 eyebrow: "一周 AI 脉络"
 tags: ["AI周报", "大模型", "开源生态", "Agent"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 6
 ---
-> **导语**：AI周报，一周AI脉络。这期十九条，不按流水账，先看四条主线。
+> **导语**：AI周报，一周AI脉络。这期十九条，不按流水账，先看五条主线。
 
 ---
 
@@ -94,11 +94,11 @@ mindmap
 - **[Grok进Office](https://x.ai/news)**：Grok做Word/PowerPoint免费插件、上Bedrock和Databricks、Grok 4.3带1M上下文，还更新Imagine Video 1.5 *(xAI)*
 - **[Meta AI Mode](https://techcrunch.com/2026/06/15/metas-new-ai-mode-on-facebook-pulls-from-public-info-across-its-platforms/)**：Facebook上AI Mode：用Meta AI综合全平台公开帖子做自然语言搜索、不再只给链接——UGC可靠性受质疑 *(TechCrunch)*
 - **[Codex Record&Replay](https://developers.openai.com/codex/changelog)**：OpenAI给Codex上Record&Replay：macOS上把演示过的工作流直接变成可复用skill *(OpenAI)*
-- **[Framer 3.0](#)**：把Agents搬上设计画布、可接入Claude Code或Codex——在画布上设计、写作、分析、组织 *(Product Hunt)*
+- **[Framer 3.0](https://www.framer.com/blog/ai-credits-simpler-plans-and-lower-prices/)**：把 Agent 搬上设计画布，并可通过外部 Agent 工作流接入 Claude Code、Cursor 或 Codex，在画布上设计、写作、分析和整理站点 *(Framer)*
 
 ### 📌 开源 · 其余
 
-- **[Unsloth量化](#)**：GLM-5.2开源当天放出GGUF量化、体积压84%——一台Mac就能本地跑 *(Unsloth)*
+- **[Unsloth量化](https://huggingface.co/unsloth/GLM-5.2-GGUF)**：Unsloth 放出 GLM-5.2 的 GGUF 量化版本；不同量化档位对内存、体积和精度的取舍差别很大，部署前需要按自己的硬件实测 *(Unsloth/Hugging Face)*
 - **[agent-skills](https://github.com/trending?since=weekly)**：addyosmani的AI编码技能库，把agent常用技能和提示词收成一处——GitHub周榜涨星猛 *(GitHub趋势)*
 - **[LMCache](https://github.com/LMCache/LMCache)**：主打LLM的KV缓存管理：长上下文场景省显存、提吞吐——持续霸榜GitHub周趋势 *(GitHub趋势)*
 
@@ -112,7 +112,7 @@ mindmap
 
 - **[Baseten 15亿](https://techcrunch.com/2026/06/18/ai-inference-startup-baseten-reportedly-raising-1-5b-months-after-its-last-mega-round/)**：推理基础设施公司接近完成约15亿美元融资、估值约130亿，距上轮才几个月——推理需求暴涨信号 *(TechCrunch)*
 - **[MLPerf v6.0](https://mlcommons.org/benchmarks/training/)**：NVIDIA Blackwell横扫训练榜、最高8192卡——MoE和稀疏模型训练成新基准 *(MLCommons)*
-- **[HPE AI Factory](#)**：Discover大会上扩AI Factory、联手NVIDIA——主打agentic IT与企业治理、主权落地 *(HPE)*
+- **[HPE AI Factory](https://www.hpe.com/us/en/newsroom/press-release/2026/06/hpe-brings-agentic-ai-into-production-with-nvidia-delivering-security-governance-scale-and-sovereignty.html)**：HPE 在 Discover 大会上扩展与 NVIDIA 共建的 AI Factory，重点补上 Agent 的安全、治理、可观测性和主权部署能力 *(HPE)*
 - **[AI没取代工程师](https://simonwillison.net/2026/jun/14/)**：Simon Willison：AI还没、也不会取代软件工程师——软件工程对AI既适配又有韧性 *(Simon Willison)*
 
 ---

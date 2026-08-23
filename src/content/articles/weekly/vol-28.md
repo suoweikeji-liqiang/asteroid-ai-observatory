@@ -1,6 +1,6 @@
 ---
-title: "AI 周报 VOL.28 · 门槛降低与国产模型冲刺"
-description: "门槛降了安全雷也来了，国产模型钱潮同步冲刺。梳理本周前沿大模型发布、智能体落地与开发生态变化。"
+title: "AI 周报 VOL.28 · 前沿模型重开与国产工具链提速"
+description: "Anthropic 调整前沿模型访问，国产模型加速进入开发工具链。梳理本周模型、工具与科研产品变化。"
 publishedAt: "2026-07-04"
 kind: "weekly"
 slug: "vol-28"
@@ -8,10 +8,10 @@ issue: "VOL.28 · 2026.06.26—07.05"
 eyebrow: "一周 AI 脉络"
 tags: ["AI周报", "大模型", "开源生态", "Agent"]
 featured: false
-draft: true
-readingMinutes: 6
+draft: false
+readingMinutes: 4
 ---
-> **导语**：AI周报，一周AI脉络。这期二十条，不按流水账，先看四条主线。
+> **导语**：AI周报，一周AI脉络。这期只保留五条可以回到公开来源核验的消息，先看四条主线。
 
 ---
 
@@ -21,21 +21,21 @@ readingMinutes: 6
 mindmap
   root((本周 AI 核心脉络))
 
-    Sonnet 5转默认，Mythos
+    Sonnet 5转默认，Fable 5重开
 
       同一天Anthropic干了两件
 
-    Claude Code仓库雷+首例a
+    Claude Science进入科研工作台
 
-      两周内先后两次安全事件Claud
+      文献到分析留在同一工作空间
 
     GLM-5.2/K2.7/DeepS
 
       三件事同一周发生智谱给两周前发布
 
-    LongCat/可灵/宇树同周提速
+    LongCat 2.0国产算力开源
 
-      三件事挤在同一周美团发布万亿参数
+      美团发布1.6T MoE旗舰
 
 ```
 
@@ -43,64 +43,43 @@ mindmap
 
 ## 🌟 核心深度剖析（4 大重磅事件）
 
-### 01. [门槛下降：Sonnet 5转默认，Mythos/Fable限时重开](https://www.anthropic.com/news/claude-sonnet-5)
-- **发布主体**：Anthropic / 商务部 · 06/30
-- **核心事实**：同一天，Anthropic干了两件事：Claude Sonnet 5从7月1日起成为全球Free和Pro用户的默认模型，智能体类基准逼近旗舰Opus 4.8，促销价维持到8月底；同时，美国商务部解除了对Mythos和Fable两个多月来的出口管制，Anthropic同步宣布7月1日起恢复访问——但官方公告写明，这次恢复只把它重新计入套餐额度到7月7日，过后要继续用就得靠单独购买的用量点数，不再包含在订阅里。
-- **行业影响**：这周不是简单的门槛降了两次：Sonnet 5是真降门槛，免费转默认、价格更低，没有时间限制；Mythos和Fable的重开更像一个短暂窗口——政府那道出口管制确实撤销了，但Anthropic自己把它放进限时套餐框架，六天后就要另外付费。免费用上顶级模型的窗口，比标题听起来短得多。
-- **实操与避坑建议**：Sonnet 5可以直接去试，不用赶时间；但想在正常套餐额度内体验Fable5或Mythos5，得赶在7月7日前用——过了这个点继续用就要单独买用量点数，别把「限制解除」当成「永久免费重开」。
+### 01. [门槛调整：Sonnet 5 转默认，Fable 5 恢复全球访问](https://www.anthropic.com/news/redeploying-fable-5)
+- **发布主体**：Anthropic · 06/30
+- **核心事实**：Anthropic 宣布恢复 Claude Fable 5 的全球访问，并从 7 月 1 日起陆续开放 Claude Platform、Claude.ai、Claude Code 和 Claude Cowork。Mythos 5 的恢复范围更窄，只面向获批机构，不能把两者笼统理解成同时全面重开。同期 Sonnet 5 成为 Claude Free 和 Pro 用户的默认模型。
+- **行业影响**：前沿模型的可用性不再只取决于模型有没有发布，还取决于安全评估、监管范围、账户类型和计费政策。把单一型号写死进生产流程，风险越来越高。
+- **实操与避坑建议**：关键流程保留模型切换能力，并在接入前重新确认地区、账户和 API 的实际可用范围；公告里的“恢复访问”不等于所有用户、所有入口都拥有相同权限。
 
 ---
 
-### 02. [安全踩坑：Claude Code仓库雷+首例agent自主勒索](#)
-- **发布主体**：The Decoder / Sysdig · 06/29-07/03
-- **核心事实**：两周内先后两次安全事件：Claude Code打开被投毒的GitHub仓库时会执行仓库里藏的隐藏指令，攻击者可拿到完全控制权；紧接着，安全厂商Sysdig记录到全球首例完全由AI Agent自主完成的勒索攻击——从漏洞利用、横向移动到加密数据库，全程无需人工干预。
-- **行业影响**：这两件事合在一起说明一件事：agent自主执行代码/操作系统的能力已经足够强，但权限边界还没跟上——攻击者能拿它当武器，普通开发者也可能在不知情的情况下踩雷。
-- **实操与避坑建议**：用Claude Code或任意agent工具跑不熟悉的仓库前，先在容器或沙盒里隔离，别给agent超出任务本身需要的系统权限；自己写的agent自动化流程，也该加一层操作审计。
+### 02. [Claude Science：把科研 Agent 放进统一工作台](https://www.anthropic.com/news/claude-science-ai-workbench)
+- **发布主体**：Anthropic · 本周
+- **核心事实**：Anthropic 发布 Claude Science 工作台，面向生命科学研究，把文献检索、数据分析、代码执行与协作放进同一环境。
+- **行业影响**：科研类 Agent 的竞争点正从“回答专业问题”转向“能否在可追溯的工作空间里连接资料、分析过程和最终结论”。
+- **实操与避坑建议**：涉及实验、医学或药物研发时，保留原始数据、检索出处和分析日志；模型产出的假设只能作为研究输入，不能替代专家复核。
 
 ---
 
-### 03. [国产工具进场：GLM-5.2/K2.7/DeepSeek全塞进你的工具链](#)
+### 03. [国产工具进场：GLM-5.2、K2.7 与 DeepSeek 进入开发工具链](https://github.blog/changelog/2026-07-01-kimi-k2-7-is-now-available-in-github-copilot/)
 - **发布主体**：Zhipu / Moonshot/Kimi / DeepSeek · 07/01-07/02
-- **核心事实**：三件事同一周发生：智谱给两周前发布的开源旗舰GLM-5.2配上官方开发环境ZCode；月之暗面的Kimi K2.7 Code直接上线GitHub Copilot的模型选择器；DeepSeek开源投机解码框架DSpark，让V4的生成速度提升百分之六十到八十五。
+- **核心事实**：三件事在相近时间发生：智谱为 [GLM-5.2](https://z.ai/blog/glm-5.2) 配套 ZCode；Kimi K2.7 Code 上线 GitHub Copilot 模型选择器，成为其中首个可选的开放权重模型；DeepSeek 发布 [DSpark](https://arxiv.org/abs/2607.05147) 投机解码方法，用于降低 V4 服务中的验证浪费。
 - **行业影响**：这次不是『再发一个模型让你另开账号试』，而是直接把能力塞进开发者已经在用的入口——Copilot的选择器、已经部署的V4、配套的IDE。国产开源模型的竞争重心，正从『发布』转向『好不好接进现有工具链』。
-- **实操与避坑建议**：用GitHub Copilot的可以直接在模型选择器里试K2.7 Code；已经在跑DeepSeek V4的团队，DSpark是纯免费的推理加速，值得直接接上；GLM-5.2配ZCode是否比你现在的IDE配置更顺手，值得花十分钟看看。
+- **实操与避坑建议**：用 GitHub Copilot 的团队可先在非关键仓库对比 K2.7 Code；自部署 DeepSeek 的团队则要在自己的并发量、上下文和硬件组合上验证 DSpark，论文中的加速不能直接当成生产承诺。
 
 ---
 
-### 04. [资本模型双冲：LongCat/可灵/宇树同周提速](#)
-- **发布主体**：美团 / 快手 / 宇树 · 07/01-07/02
-- **核心事实**：三件事挤在同一周：美团发布万亿参数的LongCat-2.0，用国产算力集群训练，是这条产品线第一次以旗舰姿态入场；快手旗下可灵AI获得二十点二八亿美元融资，估值到一百八十亿美元；宇树科技拿到证监会同意的科创板IPO注册批文。
-- **行业影响**：一家此前不算一线玩家的公司(美团)带着万亿参数模型入场、一家融了近三十亿美元(可灵)、一家人形机器人公司要上市(宇树)——国内AI的资本和技术两条线同时在加速，玩家版图比想象中更宽。
-- **实操与避坑建议**：值得盯两件事：LongCat-2.0是否会开源或开放公开API——如果开放，这是给独立开发者的新选项；可灵和宇树这类公司的后续动作，往往预示接下来一段时间国内基础设施和工具会往哪个方向补。
+### 04. [LongCat-2.0：国产算力训练的万亿参数模型](https://www.meituan.com/news/NN260630164005904)
+- **发布主体**：美团 · 06/30
+- **核心事实**：美团发布 LongCat-2.0，并宣布对外开源。官方披露模型总参数 1.6T、平均激活约 48B、原生支持 1M 上下文，训练与推理全流程运行在五万卡国产算力集群上。
+- **行业影响**：这次值得关注的不只是参数规模，而是国产算力完成大规模预训练、推理和开源交付的完整闭环，为开发者增加了新的自部署候选。
+- **实操与避坑建议**：先看许可证、推理栈和实际硬件门槛，再看榜单。万亿参数即使是 MoE，也不等于普通工作站能够低成本运行；优先通过公开 API 或小规模评测验证任务适配度。
 
 ---
 
 ## ⚡ 全景快讯扫读
 
-### 📌 模型与产品 · 其余
-
-- **[Gemini图像双发](#)**：谷歌发Nano Banana 2 Lite和Gemini Omni Flash——3.5 Pro还在跳票，先补图像产品线 *(Google)*
-- **[Nemotron-TwoTower](#)**：NVIDIA发开放权重扩散语言模型——本周不止芯片新闻 *(NVIDIA)*
-- **[Mistral Leanstral 1.5](#)**：Mistral新发布，定位『人人可用的证明丰富性』 *(Mistral)*
-- **[xAI Voice Agent](#)**：语音智能体搭建工具进入测试版 *(xAI)*
-- **[Grok 4.5私测](#)**：马斯克称已在SpaceX/特斯拉内部私测、性能接近Opus——厂商自述，未公开发布，口径待验证 *(X)*
-- **[天工3.2](#)**：昆仑万维发Skywork Tags，AI智能体加入工作群聊 *(昆仑万维)*
-- **[ForgeTrain](#)**：面壁智能全自动预训练框架，官方称8小时追平Megatron-LM *(面壁智能)*
-
 ### 📌 企业与资本 · 其余
 
-- **[微软Frontier Company](#)**：砸25亿美元派驻6000名AI工程师到客户现场——直接帮客户把AI用起来 *(Microsoft)*
-- **[AWS工程师进驻](#)**：砸10亿美元派工程师进驻客户公司——和微软同一周、同一打法 *(Amazon)*
-- **[三星SK海力士扩产](#)**：计划投资5900亿美元扩产芯片，AI需求推高内存价格 *(The Decoder)*
-- **[Rubin Ultra取消](#)**：NVIDIA下一代旗舰被取消、新版本尺寸性能减半——SemiAnalysis披露 *(SemiAnalysis)*
-- **[OpenAI让5%股权](https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html)**：向美国政府提议让渡5%股权、缓和政治压力——和Anthropic走的是同一条路 *(CNBC/FT)*
-- **[SpaceXAI商标](#)**：SpaceX注册SpaceXAI商标——准备把xAI并进来的早期信号 *(X)*
-
-### 📌 研究与科研 · 其余
-
-- **[Claude Science](https://www.anthropic.com/news/claude-science-ai-workbench)**：科研工作台上线，主攻药物研发——对上OpenAI的GPT-Rosalind和谷歌的Isomorphic Labs *(Anthropic)*
-- **[Elements Claw](#)**：阿里达摩院发布超导材料发现AI智能体——科研agent的另一个垂直方向 *(达摩院)*
-- **[VibeThinker-3B开源](#)**：新浪把两周前的小模型推理论文落地成开源权重——推理能压缩，事实知识压不动 *(新浪)*
+- **[OpenAI提议5%政府持股](https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html)**：OpenAI 提议由美国政府持有 5% 股权，以缓和政治压力；该方案仍是提议，不是已经完成的交易 *(CNBC/FT)*
 
 ---
 

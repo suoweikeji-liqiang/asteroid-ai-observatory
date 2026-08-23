@@ -1,6 +1,6 @@
 ---
-title: "AI 周报 VOL.25 · 账单经济学浮出水面与模型围栏收紧"
-description: "账单经济学浮出水面，模型围栏收紧。梳理本周前沿大模型发布、智能体落地与开发生态变化。"
+title: "AI 周报 VOL.25 · Agent 走进真实工作与模型围栏收紧"
+description: "Agent 评测走进真实工作，模型围栏收紧。梳理本周前沿大模型发布、智能体落地与开发生态变化。"
 publishedAt: "2026-06-13"
 kind: "weekly"
 slug: "vol-25"
@@ -8,10 +8,10 @@ issue: "VOL.25 · 2026.06.05—06.14"
 eyebrow: "一周 AI 脉络"
 tags: ["AI周报", "大模型", "开源生态", "Agent"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 6
 ---
-> **导语**：AI周报，一周AI脉络。这期三十三条，不按流水账，先看四条主线。
+> **导语**：AI周报，一周AI脉络。这期二十六条，不按流水账，先看四条主线。
 
 ---
 
@@ -25,9 +25,9 @@ mindmap
 
       月之暗面6月12日开源Kimi
 
-    token价98%↓ vs 账单32
+    Agent开始考真实工作的最后一场考试
 
-      两个数据点碰撞出AI消费的真实结
+      ALE覆盖55个专业子领域
 
     Fable 5出口管制
 
@@ -51,11 +51,11 @@ mindmap
 
 ---
 
-### 02. [AI账单经济学：token价98%↓ vs 账单320%↑](https://ramp.com/blog/ai-spend-report-2026)
-- **发布主体**：Ramp / Stanford AI Index · 本周
-- **核心事实**：两个数据点碰撞出AI消费的真实结构：token价格两年跌98%（OpenAI API从$0.12跌到$0.003每百万token），但Ramp统计企业AI账单同期涨320%。Stanford AI Index报告补充细节——AI应用前1%用户人均月消费$7500，是中位数的650倍；Ramp客户AI支出已达$44B年化规模。
-- **行业影响**：价格战没压住总支出，反而释放了需求——用量涨幅远超降价幅度。Linux Foundation本周发布Tokenomicon报告，试图给token经济学建标准框架，背后是这条曲线已经影响整个行业的成本结构。
-- **实操与避坑建议**：成本优化的重点不是换便宜模型，是控用量——按真实业务价值设token预算，监控前1%用户，别让长尾prompt把账单拉成指数分布。
+### 02. [Agents' Last Exam：Agent 开始考真实工作](https://arxiv.org/abs/2606.05405)
+- **发布主体**：UC Berkeley RDI · 06/03
+- **核心事实**：伯克利 RDI 联合数百名行业专家发布 Agents' Last Exam（ALE），把 Agent 放进真实操作系统环境，完成可验证、长周期且具有经济价值的专业任务。首版覆盖 13 个行业集群、55 个专业子领域，公开论文报告最难一档仍远未被现有系统攻克。
+- **行业影响**：Agent 评测开始从“会不会做一道题”转向“能不能交付完整工作成果”。它暴露出的典型问题不是模型完全不会，而是长任务中漏文件、漏约束，以及没有真正检查结果就宣布完成。
+- **实操与避坑建议**：内部评测别只统计任务是否启动成功。把最终文件、字段、数量和业务约束写成确定性检查项，并单独记录模型、执行框架、耗时和单任务成本。
 
 ---
 
@@ -102,8 +102,7 @@ mindmap
 
 ### 📌 工程 · 其余
 
-- **[Agents' Last Exam](https://arxiv.org/abs/2606.xxxxx)**：CMU等联合发布ALE benchmark：用失败案例和对抗样本测agent鲁棒性——榜单开始往「坏天气」靠 *(arXiv)*
-- **[Anthropic RSI](https://www.anthropic.com/research/rsi-in-practice)**：Anthropic论文：5月入库代码80%出自Claude——递归自我改进已在工程侧落地 *(Anthropic)*
+- **[Anthropic RSI](https://www.anthropic.com/institute/recursive-self-improvement)**：Anthropic 披露，截至 2026 年 5 月，其合入代码中超过 80% 由 Claude 编写；公司同时强调，这不等于系统已经能够自主设计并训练出更强的继任模型 *(Anthropic)*
 - **[GitHub Workflows](https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview)**：Agentic Workflows公测、agent免PAT直跑工作流——agent进流水线成平台默认 *(GitHub)*
 - **[多智能体安全](https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/)**：DeepMind设专项投资多智能体安全研究——担心的是百万agent互相交互的系统性风险 *(DeepMind)*
 - **[生物学Agent](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2651037936&idx=2&sn=04009945810ed4de9c5f7f7b30783c55)**：Anthropic博客：生物学agent的瓶颈不在模型在数据基础设施——湿实验数据没有被agent化 *(Anthropic/机器之心)*
@@ -116,10 +115,7 @@ mindmap
 
 ### 📌 行业与人事 · 高门槛
 
-- **[MiMo TileRT](https://minimax.com/blog/tilert)**：MiniMax发布TileRT技术：万亿参数模型1000tps实时推理——推理效率还在跑 *(MiniMax)*
-- **[宇树成本交叉](https://www.unitree.com/news/cost-crossover)**：宇树机器人宣布硬件成本已低于人力——具身智能开始过经济可行性拐点 *(宇树)*
-- **[DeepSeek IDC](#)**：DeepSeek大规模招募IDC人才——模型厂商开始自建数据中心 *(脉脉)*
-- **[SK Hynix×NVIDIA](https://news.skhynix.com/sk-hynix-nvidia-hbm4-2026)**：SK海力士联合NVIDIA推HBM4存储方案，瞄准下一代训练集群——算力军备竞赛到存储层 *(SK Hynix)*
+- **[SK Hynix×NVIDIA](https://news.skhynix.com/en/multi-year-tech-partnership-with-nvidia/)**：SK 海力士与 NVIDIA 宣布多年技术合作，联合推进面向 AI 工厂的下一代内存，并用 AI 改进半导体设计与制造 *(SK Hynix)*
 - **[OpenAI买Ona](https://openai.com/index/openai-to-acquire-ona)**：收购Ona推Codex做长程自主编码任务——agent收购潮从人才转向产品 *(OpenAI)*
 - **[Anthropic企业三连](https://www.anthropic.com/news/claude-corps)**：Claude Corps发布、DXC集成银行航司系统、TCS 5万员工用Claude——企业渗透在提速 *(Anthropic)*
 - **[30亿欧元](https://the-decoder.com/mistral-ai-seeks-3-billion-euros-to-fund-its-european-ai-push/)**：Mistral寻求新一轮融资撑欧洲AI路线——欧洲独苗也要进补给站 *(The Decoder)*
