@@ -1,19 +1,15 @@
 ---
-title: "智能体开发框架演进史：从链式调用、图编排到状态原语收敛"
-description: "前沿技术深度调研与架构拆解：全面解析 智能体开发框架演进史：从链式调用、图编排到状态原语收敛，剖析工程原理与落地实践。"
+title: "从 AutoGPT 到 AgentOS：Agent 框架到底在进化什么"
+description: "沿着自动循环、流程状态、记忆、技能、工具协议、多角色协作和运行治理，梳理 Agent 框架演进背后的系统责任。"
 publishedAt: "2026-05-29"
 kind: "topic"
 slug: "agent-framework-evolution"
-tags: ["前沿信号", "系统架构", "智能体", "工程实战"]
+tags: ["Agent框架", "系统架构", "智能体", "AgentOS"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 18
 ---
-# 完整口播稿：从 AutoGPT 到 AgentOS，Agent 技术到底在进化什么？
-
-> 建议时长：11-14 分钟  
-> 视频定位：专业技术专题，不做工具教程，不做简单框架横评。  
-> 讲法原则：中文概念优先，英文名只作为索引；重点讲清楚技术责任如何一层层被拆出来。
+> 核心判断：Agent 技术的演进，不是功能越来越多的历史，而是大模型从“会回答”走向“会做事”以后，提示词无法承担的系统责任被逐层拆出来的历史。
 
 ---
 
@@ -569,6 +565,14 @@ Agent 框架为什么一直变？
 
 ## 参考资料与延伸阅读
 
-- 官方技术文档、开源代码仓库与架构设计白皮书。
+- [LangGraph overview](https://docs.langchain.com/oss/python/langgraph/overview)
+- [LangGraph persistence](https://docs.langchain.com/oss/python/langgraph/persistence)
+- [Anthropic Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+- [Model Context Protocol](https://www.anthropic.com/news/model-context-protocol)
+- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/agents/)
+- [OpenAI Agents SDK tracing](https://openai.github.io/openai-agents-python/tracing/)
+- [Google Agent Development Kit](https://adk.dev/)
+- [Agno](https://github.com/agno-agi/agno)
+- [AgentScope](https://github.com/agentscope-ai/agentscope)
 
-> 资料核验日期：2026-08-23。
+> 框架功能与产品定位可能随版本变化；本文重点讨论可迁移的架构责任。资料核验日期：2026-08-23。
