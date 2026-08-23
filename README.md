@@ -17,6 +17,19 @@ PUBLIC_SITE_URL=https://ai.aifuli.dev npm run build
 
 构建产物位于 `dist/`。
 
+## 访问统计
+
+Cloudflare Web Analytics 报告由 GitHub Actions 每天北京时间 09:00 自动生成，也可以在 Actions 中手动运行 `Cloudflare Analytics Report`。报告包含页面浏览量、访问量、热门页面、访问来源、国家和地区以及设备分布。
+
+本地查询时，将只读凭据放在环境变量中（不要写入仓库）：
+
+```bash
+npm run analytics -- --hours 24
+npm run analytics -- --days 7 --markdown
+```
+
+需要 `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID` 和 `CLOUDFLARE_SITE_TAG`。线上凭据保存在 GitHub Actions Secrets 中。
+
 ## 内容模型
 
 文章放在 `src/content/articles/{weekly,topic,daily}/`。统一 frontmatter 包括：

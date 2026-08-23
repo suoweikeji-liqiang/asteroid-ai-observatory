@@ -1,0 +1,39 @@
+name: Cloudflare Analytics Report
+
+on:
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: 统计最近多少小时
+        required: true
+        default: "24"
+  schedule:
+    - cron: "0 1 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate analytics report
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_SITE_TAG: ${{ secrets.CLOUDFLARE_SITE_TAG }}
+          REPORT_HOURS: ${{ inputs.hours || '24' }}
+        run: |
+          node scripts/cloudflare-analytics.mjs --hours "$REPORT_HOURS" --markdown | tee analytics-report.md
+          cat analytics-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-analytics-report
+          path: analytics-report.md
+          retention-days: 30
