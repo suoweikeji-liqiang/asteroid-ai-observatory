@@ -6,14 +6,14 @@ kind: "topic"
 slug: "mistral-agentic-search-architecture"
 tags: ["前沿信号", "系统架构", "智能体", "工程实战"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 8
 ---
 ---
 
 ## 01. 封面：RAG 没死，固定 Top-K 该退了
 
-过去两年，大模型落地最普遍的架构就是 RAG：上传文档、切片向量化、按相似度召回 Top-K，最后让模型根据切片回答。但几乎所有做过企业知识库的团队都遇到过同一个瓶颈——文档一旦变长、变复杂，模型就经常答非所问。就在最近，Mistral 正式发布了 Agentic Search，并宣称在复杂金融与政企评测中，准确率最高暴涨了三倍。一时间，“RAG 死了”的声音再次刷屏。今天这期专题，我们不跟风站队，带大家完整拆透 Mistral Agentic Search 的技术架构、真实评测、工具原语与工程落地的真实边界。
+过去两年，大模型落地最普遍的架构就是 RAG：上传文档、切片向量化、按相似度召回 Top-K，最后让模型根据切片回答。但几乎所有做过企业知识库的团队都遇到过同一个瓶颈——文档一旦变长、变复杂，模型就经常答非所问。就在最近，Mistral 正式发布了 Agentic Search，并称其在复杂金融与政企评测中的正确率最高达到单次 RAG 的约三倍。一时间，“RAG 死了”的声音再次刷屏。今天这期专题，我们不跟风站队，带大家完整拆透 Mistral Agentic Search 的技术架构、真实评测、工具原语与工程落地的真实边界。
 
 
 ---
@@ -104,12 +104,14 @@ Mistral 给出的官方 Benchmark 确实极具视觉冲击力：在 5.3 万页 S
 
 ## 14. 总结收官：行动建议与结语
 
+Agentic Search 并没有让索引、解析和传统检索过时，而是给模型增加了继续查找、阅读和核验的能力。落地时应先以单次或增强型 RAG 建立低成本基线，只把真正需要跨页、跨文档和表格核验的问题升级到 Agent Loop，并用步数、Token、权限和证据日志约束整个过程。
+
 ---
 
 ## 参考资料与延伸阅读
 
 ### 本文事实来源
-## Mistral 官方资料
+### Mistral 官方资料
 
 - [Agentic Search 官方发布](https://mistral.ai/news/agentic-search/)
 - [Agentic Search 官方文档](https://docs.mistral.ai/studio/search/agentic-search)
@@ -119,14 +121,14 @@ Mistral 给出的官方 Benchmark 确实极具视觉冲击力：在 5.3 万页 S
 - [Starter MCP server 当前实现](https://github.com/mistralai/search-starter-app/blob/main/template/src/entrypoints/mcp_server.py)
 - [mistralai-search-toolkit 0.0.11](https://pypi.org/project/mistralai-search-toolkit/)
 
-## Benchmark 一手资料
+### Benchmark 一手资料
 
 - [FinanceBench 论文](https://arxiv.org/abs/2311.11944)
 - [FinanceBench 仓库](https://github.com/patronus-ai/financebench)
 - [OfficeQA Pro 论文](https://arxiv.org/html/2603.08655v1)
 - [OfficeQA 仓库](https://github.com/databricks/officeqa)
 
-## 技术脉络
+### 技术脉络
 
 - [RAG](https://arxiv.org/abs/2005.11401)
 - [ReAct](https://arxiv.org/abs/2210.03629)
