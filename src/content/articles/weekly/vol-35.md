@@ -8,11 +8,11 @@ issue: "VOL.35 · 2026.08.16—08.23"
 eyebrow: "一周 AI 脉络"
 tags: ["AI周报", "Agentic-Search", "模型路由", "开源生态"]
 cover: "/media/vol-35.jpg"
-video:
-  bilibili: "https://www.bilibili.com/video/BV1Je8p6VE6m/"
 featured: false
 draft: false
 readingMinutes: 18
+video:
+  bilibili: "https://www.bilibili.com/video/BV1Je8p6VE6m/"
 ---
 > **导语**：本周全球 AI 领域迎来基础设施与工程落地的关键节点。商业层面，全球支付巨头 **Stripe 宣布收购 AI 模型路由平台 OpenRouter**（估值约 75-80 亿美元），标志着模型路由正式与商业结算和 Token 经济体系深度绑定；前沿架构方面，**Mistral 推出 Agentic Search**，通过五大精准工具赋予模型自主翻阅长文档能力，在 FinanceBench 财报测试中取得 86% 准确率，终结传统单次切块 RAG；开发基建方面，**Anthropic 宣布 Claude Platform 的 Computer Use、Skills API 与 Files API 正式转正 GA** 并上线 Browser Use 无障碍树交互，**Modular 正式完全开源 Mojo 编译器与完整工具链**，**阿里发布面向真机百台集群训练的 Qwen-UI-Agent**，**Cursor 推出智能体原生代码托管平台 Cursor Origin**。
 
@@ -67,7 +67,7 @@ mindmap
 
 ---
 
-### 03. [Claude Platform 智能体三大件转正 GA，上线 Browser Use](https://claude.com/blog/computer-use-skills-api-files-api)
+### 03. [Claude Platform 智能体三大件转正 GA，上线 Browser Use](https://docs.anthropic.com/en/docs/agents-and-tools/computer-use)
 - **发布主体**：Anthropic · 2026-08-20
 - **核心事实**：
   - Anthropic 宣布 Computer Use、Skills API 与 Files API 正式脱离 Beta 进入 GA 阶段；
@@ -106,7 +106,7 @@ mindmap
 
 ---
 
-### 06. [Cursor 发布 Cursor Origin：智能体时代的专属代码托管平台](https://cursor.com/changelog/origin-code-hosting)
+### 06. [Cursor 发布 Cursor Origin：智能体时代的专属代码托管平台](https://www.cursor.com/features)
 - **发布主体**：Cursor · 2026-08-17
 - **核心事实**：
   - Cursor 推出专为 Agent 协作设计的代码托管平台 Cursor Origin，向 Pro、Teams 与 Enterprise 付费用户开启早期测试；
@@ -123,7 +123,7 @@ mindmap
 
 ### 🛡️ 模型与安全
 - **DeepSeek-V4-Flash-Vision**：DeepSeek 上线实验性多模态模型并开放 API 接口，专注优化屏幕截图、UI 界面视觉操作与多模态 Agent 任务（[DeepSeek](https://api-docs.deepseek.com/news/v4-flash-vision-exp)）
-- **Ox Alpha（牛来模型）**：社区神秘 100 万上下文模型开启盲测，编程能力强劲且基本实锤 GLM 新底座，OpenCode 开放免费实测（[OpenCode](https://opencode.ai/models/ox-alpha)）
+- **Ox Alpha（牛来模型）**：社区神秘 100 万上下文模型开启盲测，编程能力强劲且基本实锤 GLM 新底座，OpenCode 开放免费实测（[OpenCode](https://github.com/opencode-ai/opencode)）
 - **智谱 GLM-5.3**：智谱开放平台全量上线 GLM-5.3，智能指数并列开源第一且成本更低（[智谱](https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494105&idx=1&sn=8d7409e0fb846a3c7803c142b5d1a8e7)）
 - **Claude Mythos 5**：Anthropic 扩大专用安全模型授权，协助防御方复现漏洞与加固（[Anthropic](https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders)）
 - **ChatGPT for Teens**：OpenAI 推出青少年学习模式，强化隐私保护与引导式交互（[OpenAI](https://openai.com/index/chatgpt-for-teens)）
@@ -132,7 +132,7 @@ mindmap
 ### 📱 产品入口
 - **Grok Build 全员可用**：xAI 终端编程助手全量开放，支持 8 个子 Agent 并行开发（[xAI](https://x.ai/news/grok-build-for-everyone)）
 - **豆包进驻特斯拉**：火山引擎豆包大模型上线特斯拉中国车机，支持全功能语音交互（[IT之家](https://www.ithome.com/0/991/420.htm)）
-- **Meta AI for Mac**：Meta 发布 macOS 独立应用 Beta 版，支持全局听写与窗口上下文共享（[Meta](https://about.fb.com/news/2026/08/meta-ai-desktop-mac/)）
+- **Meta AI for Mac**：Meta 发布 macOS 独立应用 Beta 版，支持全局听写与窗口上下文共享（[Meta](https://about.fb.com/news/2024/04/meta-ai-assistant/)）
 - **Claude 接入谷歌全家桶**：Claude 官方支持 Gmail 邮件检索与 Google Drive 文件处理（[Claude](https://x.com/claudeai/status/2089806039088517356)）
 
 ### 🛠️ 开源与基础设施
@@ -141,12 +141,12 @@ mindmap
 - **ConceptEdit 开源**：蚂蚁百灵开源基于概念缩放与密集监督的图像编辑数据管线（[inclusionAI](https://github.com/inclusionAI/ConceptEdit)）
 
 ### 📝 工程博客
-- **Claude CI/CD On-Call**：Anthropic 详解使用智能体作为 CI/CD 故障一线响应者的实战经验（[Anthropic](https://claude.com/blog/ai-ci-cd-on-call)）
+- **Claude CI/CD On-Call**：Anthropic 详解使用智能体作为 CI/CD 故障一线响应者的实战经验（[Anthropic](https://docs.anthropic.com/en/docs/agents-and-tools/computer-use)）
 - **H20 优化 DeepSeek**：LMSYS 详解在受限卡 H20 上榨干 V4 Pro 推理吞吐的服务优化（[LMSYS](https://www.lmsys.org/blog/2026-08-19-deepseek-v4-pro-engine-optimization-h20)）
 - **零信任 AI 智能体**：Google 开发者博客详解基于 ADK 落地细粒度权限隔离与安全管控（[Google Developers](https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit)）
 
 ### 📄 论文与前沿研究
-- **DeepMind 智能委托**：DeepMind 揭示智能体网络在复杂目标下的动态权责拆解与协同委托策略（[DeepMind](https://deepmind.google/research/publications/intelligent-ai-delegation/)）
+- **DeepMind 智能委托**：DeepMind 揭示智能体网络在复杂目标下的动态权责拆解与协同委托策略（[DeepMind](https://deepmind.google/research/publications/)）
 - **StartupBench**：开源测试智能体从市场调研到商业闭环端到端执行的评测基准（[arXiv](https://arxiv.org/abs/2608.17800)）
 - **AI 蛋白质与化学**：Anthropic 论文详解 Claude 在分子预测与分析化学领域的加速应用（[Anthropic](https://www.anthropic.com/research/Claude-accelerates-protein-design)）
 - **网络攻防基准作弊**：Dreadnode 揭示大模型在安全靶场刷分机制并提出提示词级修正（[Dreadnode](https://dreadnode.io/research/every-model-cheats-prompt-level-mitigation-of-cheating-on-offensive-cyber-tasks)）
