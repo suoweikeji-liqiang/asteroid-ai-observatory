@@ -17,6 +17,8 @@ const {
 const pageTitle = title === "小行星 AI 观测站" ? title : `${title}｜小行星 AI 观测站`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = image ? new URL(image, Astro.site) : undefined;
+const bilibiliProfile = "https://space.bilibili.com/50028706";
+const openCodeReferral = "https://opencode.ai/go?ref=XDMQ9NWKPM";
 ---
 <!doctype html>
 <html lang="zh-CN">
@@ -48,6 +50,7 @@ const socialImage = image ? new URL(image, Astro.site) : undefined;
           <a href="/stories/">专题</a>
           <a href="/daily/">日报</a>
           <a href="/archive/">归档</a>
+          <a href={bilibiliProfile} target="_blank" rel="me noreferrer">B站 ↗</a>
           <a class="search-link" href="/search/">搜索</a>
         </nav>
       </div>
@@ -61,7 +64,12 @@ const socialImage = image ? new URL(image, Astro.site) : undefined;
         </div>
         <div class="footer-meta">
           <p>小行星 AI 观测站 · 视频之外的完整信号档案</p>
-          <p><a href="/rss.xml">RSS 订阅</a> · <a href="/archive/">全部归档</a></p>
+          <p><a href={bilibiliProfile} target="_blank" rel="me noreferrer">B站个人主页 ↗</a> · <a href="/rss.xml">RSS 订阅</a> · <a href="/archive/">全部归档</a></p>
+          <div class="referral-note">
+            <span class="referral-label">推荐链接</span>
+            <a href={openCodeReferral} target="_blank" rel="sponsored noreferrer">订阅 OpenCode Go ↗</a>
+            <span>通过此链接加入并订阅 Go，你和我都将获得 $5 使用额度。</span>
+          </div>
           <p>© {new Date().getFullYear()} Asteroid AI Observatory</p>
         </div>
       </div>

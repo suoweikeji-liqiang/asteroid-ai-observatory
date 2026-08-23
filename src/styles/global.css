@@ -47,6 +47,9 @@ button, input { font: inherit; }
 .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
 .footer-title { font: 900 clamp(1.8rem, 5vw, 4rem)/.95 var(--serif); margin: 8px 0; }
 .footer-meta { color: var(--muted); text-align: right; font-size: .82rem; }
+.referral-note { margin: 14px 0; padding: 12px 14px; border: 1px solid var(--line); background: var(--paper-strong); display: inline-flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; line-height: 1.55; }
+.referral-note a { color: var(--orbit); font-weight: 800; }
+.referral-label { padding: 2px 6px; background: var(--signal); color: white; font: 500 .62rem/1.4 var(--mono); letter-spacing: .08em; }
 
 .hero { padding: 70px 0 50px; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(260px, .45fr); gap: 45px; align-items: end; }
@@ -137,4 +140,5 @@ button, input { font: inherit; }
   .article-layout { display: block; }
   .article-rail { position: static; margin-bottom: 38px; }
   .footer-meta { text-align: left; }
+  .referral-note { justify-content: flex-start; }
 }

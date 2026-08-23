@@ -8,6 +8,8 @@ issue: "VOL.35 · 2026.08.16—08.23"
 eyebrow: "一周 AI 脉络"
 tags: ["AI周报", "Agentic-Search", "模型路由", "开源生态"]
 cover: "/media/vol-35.jpg"
+video:
+  bilibili: "https://www.bilibili.com/video/BV1Je8p6VE6m/"
 featured: false
 draft: false
 readingMinutes: 18
