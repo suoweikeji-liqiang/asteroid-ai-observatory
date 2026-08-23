@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleListing from "../../components/ArticleListing.astro";
+import { byNewest, type Article } from "../../lib/content";
+import { topicSectionId, topicSections, type TopicSection } from "../../lib/topicSections";
+
+export async function getStaticPaths() {
+  const articles = (await getCollection("articles", ({ data }) => data.kind === "topic" && !data.draft)).sort(byNewest);
+  return topicSections.map((section) => ({
+    params: { section: section.id },
+    props: {
+      section,
+      articles: articles.filter((article) => topicSectionId(article) === section.id)
+    }
+  }));
+}
+
+interface Props {
+  section: TopicSection;
+  articles: Article[];
+}
+
+const { section, articles } = Astro.props;
+---
+<BaseLayout title={`${section.label}专题`} description={section.description}>
+  <header class="listing-header">
+    <div class="shell">
+      <a class="back-link" href="/stories/">← 返回专题总览</a>
+      <div class="kicker">{section.index}</div>
+      <h1>{section.label}</h1>
+      <p>{section.description} 当前收录 {articles.length} 篇。</p>
+    </div>
+  </header>
+  <section class="shell"><ArticleListing articles={articles} /></section>
+</BaseLayout>

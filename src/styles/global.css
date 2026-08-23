@@ -91,6 +91,21 @@ button, input { font: inherit; }
 .listing-grid { margin-top: 40px; }
 .empty-state { padding: 70px 0; color: var(--muted); }
 
+.topic-section-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 40px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.topic-section-card { position: relative; min-height: 245px; padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 13px; text-decoration: none; }
+.topic-section-card:hover { background: var(--paper-strong); }
+.topic-section-card:hover strong { color: var(--signal); }
+.topic-section-card strong { max-width: 80%; font: 900 2rem/1.1 var(--serif); letter-spacing: -.04em; }
+.topic-section-card > span:not(.kicker, .topic-section-number) { color: var(--muted); font-size: .88rem; line-height: 1.7; }
+.topic-section-card small { margin-top: auto; color: var(--orbit); font-weight: 800; }
+.topic-section-number { position: absolute; top: 22px; right: 24px; color: var(--line); font: 500 2rem/1 var(--mono); }
+.topic-section-list { margin-top: 80px; }
+.topic-section-block { margin-top: 80px; scroll-margin-top: 100px; }
+.topic-section-block .section-head > div { max-width: 760px; }
+.topic-section-block .section-head p { margin: 12px 0 0; color: var(--muted); line-height: 1.7; }
+.topic-section-block .listing-grid { margin-top: 0; }
+.back-link { display: inline-block; margin-bottom: 28px; color: var(--orbit); font-size: .82rem; font-weight: 800; }
+
 .article-header { padding: 70px 0 40px; }
 .article-header h1 { max-width: 980px; margin: 18px 0 24px; font: 900 clamp(2.8rem, 7vw, 6.3rem)/1.02 var(--serif); letter-spacing: -.055em; }
 .article-deck { max-width: 820px; font-size: 1.2rem; line-height: 1.85; color: #4b5665; }
@@ -132,11 +147,12 @@ button, input { font: inherit; }
   .orbit-panel { min-height: 200px; border-left: 0; border-top: 1px solid var(--line); padding: 25px 0 0; }
   .featured-copy { padding-right: 0; }
   .featured-art { border-left: 0; border-top: 1px solid var(--line); }
-  .card-grid { grid-template-columns: 1fr; }
+  .card-grid, .topic-section-grid { grid-template-columns: 1fr; }
   .section-head { align-items: flex-start; }
   .section-head h2 { font-size: clamp(2rem, 10vw, 3rem); }
   .section-head a { padding-top: 8px; text-align: right; }
   .article-card { min-height: 230px; }
+  .topic-section-card { min-height: 210px; }
   .article-layout { display: block; }
   .article-rail { position: static; margin-bottom: 38px; }
   .footer-meta { text-align: left; }

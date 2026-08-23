@@ -1,14 +1,16 @@
 ---
 import type { Article } from "../lib/content";
 import { articleUrl, formatDate, kindMeta } from "../lib/content";
+import { topicSectionFor } from "../lib/topicSections";
 
 interface Props { article: Article }
 const { article } = Astro.props;
 const meta = kindMeta[article.data.kind];
+const section = article.data.kind === "topic" ? topicSectionFor(article) : undefined;
 ---
 <article class="article-card">
   <div class="article-meta">
-    <span class="kind-pill">{meta.index}</span>
+    <span class="kind-pill">{section?.index ?? meta.index}</span>
     <time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time>
   </div>
   <h3><a href={articleUrl(article)}>{article.data.title}</a></h3>
