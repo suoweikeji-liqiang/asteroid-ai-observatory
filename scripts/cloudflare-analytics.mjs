@@ -41,37 +41,17 @@ function requireEnvironment(name) {
   return value;
 }
 
-function increment(map, key, amount) {
-  const normalizedKey = key?.trim() || "（未知）";
-  map.set(normalizedKey, (map.get(normalizedKey) ?? 0) + amount);
+function formatGroups(groups, directFallback = false) {
+  return groups.slice(0, 10).map((group) => ({
+    name: group.dimensions?.metric?.trim() || (directFallback ? "直接访问" : "（未知）"),
+    value: Math.round(Number(group.count ?? 0) * Number(group.avg?.sampleInterval ?? 1)),
+  }));
 }
 
-function topEntries(map, limit = 10) {
-  return [...map.entries()]
-    .sort((left, right) => right[1] - left[1])
-    .slice(0, limit)
-    .map(([name, value]) => ({ name, value }));
-}
-
-function summarize(groups, since, until) {
-  const paths = new Map();
-  const referrers = new Map();
-  const countries = new Map();
-  const devices = new Map();
-  let pageViews = 0;
-  let visits = 0;
-
-  for (const group of groups) {
-    const sampleInterval = Number(group.avg?.sampleInterval ?? 1);
-    const count = Number(group.count ?? 0) * sampleInterval;
-    const groupVisits = Number(group.sum?.visits ?? 0) * sampleInterval;
-    pageViews += count;
-    visits += groupVisits;
-    increment(paths, group.dimensions?.requestPath, count);
-    increment(referrers, group.dimensions?.refererHost || "直接访问", count);
-    increment(countries, group.dimensions?.countryName, count);
-    increment(devices, group.dimensions?.deviceType, count);
-  }
+function summarize(data, since, until) {
+  const total = data.total?.[0] ?? {};
+  const pageViews = Number(total.count ?? 0);
+  const visits = Number(total.sum?.visits ?? 0);
 
   return {
     generatedAt: new Date().toISOString(),
@@ -79,10 +59,10 @@ function summarize(groups, since, until) {
     pageViews,
     visits,
     pagesPerVisit: visits > 0 ? Number((pageViews / visits).toFixed(2)) : 0,
-    topPaths: topEntries(paths),
-    topReferrers: topEntries(referrers),
-    topCountries: topEntries(countries),
-    devices: topEntries(devices),
+    topPaths: formatGroups(data.topPaths ?? []),
+    topReferrers: formatGroups(data.topReferers ?? [], true),
+    topCountries: formatGroups(data.countries ?? []),
+    devices: formatGroups(data.topDeviceTypes ?? []),
   };
 }
 
@@ -130,28 +110,36 @@ function formatText(report) {
 }
 
 async function queryAnalytics({ token, accountId, siteTag, since, until }) {
-  const query = `query WebAnalytics($accountId: String!, $siteTag: String!, $since: String!, $until: String!) {
+  const query = `query WebAnalytics(
+    $accountTag: string
+    $filter: AccountRumPageloadEventsAdaptiveGroupsFilter_InputObject
+    $order: string
+  ) {
     viewer {
-      accounts(filter: { accountTag: $accountId }) {
-        rumPageloadEventsAdaptiveGroups(
-          filter: {
-            AND: [
-              { datetime_geq: $since, datetime_leq: $until }
-              { bot: 0 }
-              { siteTag_in: [$siteTag] }
-            ]
-          }
-          limit: 5000
-        ) {
+      accounts(filter: { accountTag: $accountTag }) {
+        total: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 1) {
+          count
+          sum { visits }
+        }
+        topReferers: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 15, orderBy: [$order]) {
           count
           avg { sampleInterval }
-          dimensions {
-            requestPath
-            countryName
-            deviceType
-            refererHost
-          }
-          sum { visits }
+          dimensions { metric: refererHost }
+        }
+        topPaths: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 15, orderBy: [$order]) {
+          count
+          avg { sampleInterval }
+          dimensions { metric: requestPath }
+        }
+        topDeviceTypes: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 15, orderBy: [$order]) {
+          count
+          avg { sampleInterval }
+          dimensions { metric: deviceType }
+        }
+        countries: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 200, orderBy: [$order]) {
+          count
+          avg { sampleInterval }
+          dimensions { metric: countryName }
         }
       }
     }
@@ -165,7 +153,17 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
     },
     body: JSON.stringify({
       query,
-      variables: { accountId, siteTag, since, until },
+      variables: {
+        accountTag: accountId,
+        filter: {
+          AND: [
+            { datetime_geq: since, datetime_leq: until },
+            { bot: 0 },
+            { siteTag_in: [siteTag] },
+          ],
+        },
+        order: "count_DESC",
+      },
     }),
   });
 
@@ -175,7 +173,11 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
     throw new Error(`Cloudflare Analytics API 查询失败：${message}`);
   }
 
-  return payload.data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups ?? [];
+  const account = payload.data?.viewer?.accounts?.[0];
+  if (!account) {
+    throw new Error("Cloudflare Analytics API 未返回目标帐户，请检查 Token 的帐户范围");
+  }
+  return account;
 }
 
 function printHelp() {
@@ -205,14 +207,14 @@ async function main() {
   const sinceDate = new Date(untilDate.getTime() - options.hours * 60 * 60 * 1000);
   const since = sinceDate.toISOString();
   const until = untilDate.toISOString();
-  const groups = await queryAnalytics({
+  const data = await queryAnalytics({
     token: requireEnvironment("CLOUDFLARE_API_TOKEN"),
     accountId: requireEnvironment("CLOUDFLARE_ACCOUNT_ID"),
     siteTag: requireEnvironment("CLOUDFLARE_SITE_TAG"),
     since,
     until,
   });
-  const report = summarize(groups, since, until);
+  const report = summarize(data, since, until);
 
   if (options.format === "json") {
     console.log(JSON.stringify(report, null, 2));
