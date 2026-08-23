@@ -46,12 +46,13 @@ python3 scripts/export_blog_article.py \
 
 导出命令只接收已经通过事实校对和发布审核的 Markdown。博客正文是正式发布资产，不应直接使用未经编辑的口播稿。
 
-## Cloudflare Pages
+## Cloudflare Workers Static Assets
 
+- Project name：`asteroid-ai-observatory`
 - Root directory：留空（仓库根目录）
 - Build command：`npm run build`
-- Build output directory：`dist`
+- Deploy command：`npx wrangler deploy`
 - Environment variable：`PUBLIC_SITE_URL=https://你的正式域名`
 - Node.js：建议使用当前 LTS
 
-项目连接 GitHub 后，生产分支建议设为 `main`。域名在 Cloudflare Pages 项目的 Custom domains 中绑定。
+`wrangler.jsonc` 已将 `dist/` 声明为纯静态资源目录，不需要 Worker 后端代码。项目连接 GitHub 后，生产分支建议设为 `main`；域名在 Worker 的 Settings / Domains & Routes 中绑定。
