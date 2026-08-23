@@ -1,21 +1,20 @@
 ---
-title: "RAG 上下文分层与动态检索：破解信息过载与相关性衰减"
-description: "前沿技术深度调研与架构拆解：全面解析 RAG 上下文分层与动态检索：破解信息过载与相关性衰减，剖析工程原理与落地实践。"
+title: "RAG 正在变成 Context Layer：从向量检索到企业证据系统"
+description: "梳理 Hybrid RAG、Contextual Retrieval、GraphRAG 与 Agentic RAG 的边界，解释企业 AI 为什么需要动态构造可信、充分、可追溯的上下文。"
 publishedAt: "2026-06-02"
 kind: "topic"
 slug: "rag-context-layer-architecture"
-tags: ["前沿信号", "系统架构", "智能体", "工程实战"]
+tags: ["RAG", "Context Layer", "知识库", "企业AI"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 9
 ---
-> 切自 references/rag_context_layer_bilibili_pack/03_口播稿_10分钟完整版.md（10 分钟 → 27 页，保留原味）。
-> 每页一段，段数 = storyboard 页数。Chinese-dominant，英文术语点缀；slides/字幕保留英文原名，TTS 读法在配音阶段用 blind_verify + regen_clean 处理。
+> 核心判断：朴素 RAG 只解决“找出相关片段”的第一步。企业真正需要的是一层 Context Layer，能够按任务选择证据源、检索与重排、判断证据是否充分，并保留引用和权限边界。
 
 
 ---
 
-## 01. 封面 / 开场
+## 01. 开场
 
 这两年做大模型应用，RAG 几乎是绕不过去的词。很多人第一次听，会把它理解成一个很标准的流程：把文档切块，做向量化，放进向量库；用户提问的时候，找出最相关的几段，塞进提示词，再让大模型回答。这个理解没错——但如果你现在去看 OpenAI、Claude、Gemini，还有微软的 GraphRAG，会发现一件事：现在很多所谓的 RAG，已经越来越不像传统 RAG 了。
 
@@ -197,12 +196,19 @@ readingMinutes: 9
 
 ---
 
-## 27. 三连
+## 27. 延伸判断
 
 ---
 
 ## 参考资料与延伸阅读
 
-- 官方技术文档、开源代码仓库与架构设计白皮书。
+- [Anthropic：Contextual Retrieval](https://www.anthropic.com/engineering/contextual-retrieval)
+- [Google Research：Sufficient Context in RAG](https://research.google/blog/deeper-insights-into-retrieval-augmented-generation-the-role-of-sufficient-context/)
+- [Microsoft GraphRAG](https://microsoft.github.io/graphrag/)
+- [GraphRAG paper](https://arxiv.org/abs/2404.16130)
+- [LangChain retrieval architectures](https://docs.langchain.com/oss/python/langchain/retrieval)
+- [LlamaIndex：Agentic Document Workflows](https://www.llamaindex.ai/blog/introducing-agentic-document-workflows)
+- [Weaviate hybrid search](https://docs.weaviate.io/weaviate/search/hybrid)
+- [Ragas metrics](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/)
 
-> 资料核验日期：2026-08-23。
+> 不同产品对 Hybrid、Agentic 与 Context Layer 的定义并不完全一致，文中把它们作为架构模式而非统一标准。资料核验日期：2026-08-23。

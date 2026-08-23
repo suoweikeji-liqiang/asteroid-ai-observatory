@@ -1,22 +1,20 @@
 ---
 title: "企业智能体治理与合规拦截：权限隔离、数据脱敏与审计防线"
-description: "前沿技术深度调研与架构拆解：全面解析 企业智能体治理与合规拦截：权限隔离、数据脱敏与审计防线，剖析工程原理与落地实践。"
+description: "以 Databricks 的治理实践为案例，拆解企业 Agent 的委派身份、资源权限、运行时策略、数据质量、成本归因和审计闭环。"
 publishedAt: "2026-06-06"
 kind: "topic"
 slug: "agent-governance-compliance-gate"
-tags: ["前沿信号", "系统架构", "智能体", "工程实战"]
+tags: ["Agent治理", "权限控制", "审计", "企业AI"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 9
 ---
-> grounded：Databricks 工程博客《Governing AI agents at scale with Unity Catalog》。源稿见 SOURCE_*.txt。
-> 取通用治理判断，Unity Catalog / AI Gateway 作为"有人这么落地"的实证案例，不做产品推荐。与 topic06（运行时沙盒边界）、topic11（上线门禁）同一条线，本期补"组织级治理平面"这一环。
-> 每页一段，段数 = storyboard 页数。Chinese-dominant，英文术语点缀；slides/字幕保留英文原名，TTS 读法在配音阶段用 blind_verify + regen_clean 处理。
+> 核心判断：组织无法预审 Agent 未来的每一个决定。可执行的治理路径是控制它能访问什么、按请求判断这次动作是否允许，并持续记录它实际做了什么。
 
 
 ---
 
-## 01. 封面 / 开场
+## 01. 开场
 
 一年前，你公司里大概有十几个 AI agent。今天，可能上千个。每个开发都有一个会写代码、会评审、会提交的编码 agent；分析团队搭了预测 agent，销售上了线索打分，客服自动分单，财务做对账。每个团队都看到机会、都跑得飞快。然后有一天，有人问了一句：现在到底哪些 agent，在碰我们的客户隐私数据？
 
@@ -198,12 +196,16 @@ readingMinutes: 9
 
 ---
 
-## 27. 结论 · 三连
+## 27. 结论
 
 ---
 
 ## 参考资料与延伸阅读
 
-- 官方技术文档、开源代码仓库与架构设计白皮书。
+- [Databricks AI governance guide](https://docs.databricks.com/aws/en/ai-gateway/ai-governance)
+- [Unity AI Gateway](https://docs.databricks.com/aws/en/ai-gateway/)
+- [Govern an MCP service](https://docs.databricks.com/aws/en/ai-gateway/govern-mcp-service)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [OpenAI：Running Codex safely](https://openai.com/index/running-codex-safely/)
 
-> 资料核验日期：2026-08-23。
+> Unity Catalog 与 Unity AI Gateway 作为一种落地案例出现，不构成产品推荐；部分 service policy 能力仍可能处于预览阶段。资料核验日期：2026-08-23。

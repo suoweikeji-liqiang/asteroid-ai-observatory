@@ -1,21 +1,20 @@
 ---
 title: "Agent SDK 范式转移：从重型框架包装到轻量原语与双向协议"
-description: "前沿技术深度调研与架构拆解：全面解析 Agent SDK 范式转移：从重型框架包装到轻量原语与双向协议，剖析工程原理与落地实践。"
+description: "从内置工具、Skills、CLI 与 MCP 的分工变化出发，分析 Agent 开发为何从重型中间层回到 SDK 优先，以及框架仍然适用的边界。"
 publishedAt: "2026-06-03"
 kind: "topic"
 slug: "agent-sdk-paradigm-shift"
-tags: ["前沿信号", "系统架构", "智能体", "工程实战"]
+tags: ["Agent SDK", "系统架构", "Skills", "MCP"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 9
 ---
-> grounded：Pulumi 工程博客《How Building AI Agents Has Changed in 2026》（Engin Diri，2026-05-14）。剔除原文结尾 Pulumi Neo 的自荐，只保留工程判断。源稿见 SOURCE_*.txt。
-> 每页一段，段数 = storyboard 页数。Chinese-dominant，英文术语点缀；slides/字幕保留英文原名，TTS 读法在配音阶段处理。
+> 核心判断：工具、检索和基础执行循环正在被官方 SDK 商品化，团队的差异化随之上移到 Skills、上下文、策略边界和业务评测。框架没有消失，但应该在确实需要多供应商、复杂编排、强类型或更深可观测性时再引入。
 
 
 ---
 
-## 01. 封面 / 开场
+## 01. 开场
 
 十二个月前，搭一个 AI agent，几乎是一套固定动作：挑一个框架，定义一堆工具，搭一条 RAG 管线，再写一摞胶水代码把它们接起来。这是当时的默认剧本。但很多团队复盘半年下来，结论都一样：一半的时间，花在了和 agent 本职工作毫无关系的基础设施上。
 
@@ -197,12 +196,17 @@ readingMinutes: 9
 
 ---
 
-## 27. 三连
+## 27. 结语
 
 ---
 
 ## 参考资料与延伸阅读
 
-- 官方技术文档、开源代码仓库与架构设计白皮书。
+- [Pulumi：How Building AI Agents Has Changed in 2026](https://www.pulumi.com/blog/how-building-ai-agents-has-changed/)
+- [Anthropic：Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+- [Claude Agent SDK overview](https://platform.claude.com/docs/en/agent-sdk/overview)
+- [Codex SDK](https://developers.openai.com/codex/sdk/)
+- [Claude Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+- [Model Context Protocol](https://www.anthropic.com/news/model-context-protocol)
 
-> 资料核验日期：2026-08-23。
+> “中间层缩小”和“SDK 优先”主要是 Pulumi 作者的工程判断，不代表所有项目都应移除 RAG 或框架。资料核验日期：2026-08-23。
