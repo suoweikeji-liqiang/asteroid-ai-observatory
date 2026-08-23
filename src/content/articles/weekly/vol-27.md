@@ -1,6 +1,6 @@
 ---
 title: "AI 周报 VOL.27 · 自研芯片降本与前沿模型按名单发"
-description: "自研芯片来砍成本，前沿模型按名单发：梳理本周全球大模型能耗、定制硬件与企业准入机制演进。"
+description: "从 OpenAI 自研推理芯片与 GPT-5.6 限量预览，到 DeepMind 人才流动和模型蒸馏争议：梳理本周四条核心主线。"
 publishedAt: "2026-06-27"
 kind: "weekly"
 slug: "vol-27"
@@ -10,10 +10,10 @@ tags: ["AI周报", "自研芯片", "算力成本", "大模型"]
 featured: false
 video:
   bilibili: "https://www.bilibili.com/video/BV1UpTN67ES1/"
-draft: true
-readingMinutes: 5
+draft: false
+readingMinutes: 6
 ---
-> **导语**：AI周报，一周AI脉络。这期十四条，不按流水账，先看四条主线。
+> **导语**：本周的共同主题不是单纯的模型跑分，而是能力背后的控制权：谁掌握推理芯片，谁能拿到前沿模型，谁能留住关键研究者，以及模型能力能否被合规地迁移。
 
 ---
 
@@ -22,82 +22,78 @@ readingMinutes: 5
 ```mermaid
 mindmap
   root((本周 AI 核心脉络))
-
-    OpenAI首颗自研芯片，推理成本砍
-
-      OpenAI和博通6月24日发布
-
-    前沿模型开始按名单发
-
-      OpenAI 6月26日发布GP
-
-    谷歌DeepMind六天走四人，全投
-
-      继上周Transformer作者
-
-    Anthropic指控阿里2880万
-
-      Anthropic 6月致信美国
-
+    推理基础设施
+      OpenAI 与 Broadcom 发布 Jalapeño
+      计划 2026 年底开始部署
+    前沿模型准入
+      GPT-5.6 Sol Terra Luna
+      首批仅限受信合作伙伴
+    人才流动
+      DeepMind 三位核心研究者转投 Anthropic
+      顶尖人才与算力配置继续重组
+    模型蒸馏争议
+      Anthropic 指控阿里关联方大规模提取能力
+      指控尚无独立第三方确认
 ```
 
 ---
 
-## 🌟 核心深度剖析（4 大重磅事件）
+## 🌟 四条核心事件
 
-### 01. [Jalapeño：OpenAI首颗自研芯片，推理成本砍半](https://openai.com/index/openai-broadcom-jalapeno-inference-chip/)
-- **发布主体**：OpenAI / Broadcom · 06/24
-- **核心事实**：OpenAI和博通6月24日发布首颗自研AI芯片Jalapeño，专为大模型推理、不是训练；从概念到流片只用9个月，TSMC代工、博通供网络互连。实验室测试里，每token推理成本约比当代英伟达GPU低50%，性能对标Blackwell和谷歌TPU。
-- **行业影响**：推理是AI的『日账单』所在——OpenAI 2025年光服务ChatGPT就花了约140亿美元。把单token推理成本砍一半，是决定能否盈利的杠杆，不是边际优化。芯片2026年底小批量、2027量产，OpenAI与微软等承诺到2029部署10吉瓦自研加速器。英伟达训练仍稳(消息当天只跌0.26%)，但推理这块正被定制芯片蚕食。
-- **实操与避坑建议**：别急着唱衰英伟达——训练仍是它的护城河；真正值得跟的是推理芯片这条线：未来一两年自研ASIC、TPU、Trainium会把推理单价继续往下压，长期看API推理报价有下行空间。
+### 01. [OpenAI 与 Broadcom 发布首款自研推理芯片 Jalapeño](https://openai.com/index/openai-broadcom-jalapeno-inference-chip/)
 
----
-
-### 02. [GPT-5.6限受信：前沿模型开始按名单发](https://www.cnbc.com/2026/06/26/openai-limits-new-ai-models-to-trusted-partners-request-us-government.html)
-- **发布主体**：OpenAI / CNBC · 06/26
-- **核心事实**：OpenAI 6月26日发布GPT-5.6三件套——Sol是新旗舰、比GPT-5.5上一个台阶，Terra对标5.5但成本低一半，Luna更小更省，上下文升到150万token。但初期只通过API和Codex对一小撮『受信合作伙伴』开放，官方说这是应美国政府要求。
-- **行业影响**：这是两周前Anthropic Fable 5出口管制的续集：前沿模型不再默认人人可用，而是按『受信名单』发。两周内两家头部实验室的最强模型都先对一小圈人开放——能力和访问权第一次被国家安全框架直接框住。
-- **实操与避坑建议**：对国内团队的含义更确定了：最强一档模型的可得性正系统性收紧，关键工作流别押单一前沿闭源模型——多模型路由加开源权重备份，从加分项变成默认项。
+- **发布主体**：OpenAI / Broadcom · 2026-06-24
+- **核心事实**：Jalapeño 是 OpenAI 首款面向大模型推理设计的 Intelligence Processor，由 OpenAI 负责架构设计，Broadcom 提供芯片实现、网络与连接技术，Celestica 参与板卡、机架和系统集成。官方称项目从设计推进到生产准备阶段用了九个月，并计划在 2026 年底开始初步部署。
+- **证据边界**：官方只披露“每瓦性能显著优于当前前沿水平”，没有公布可独立复核的单 Token 成本降幅。因此不能把“推理成本砍半”写成已经证实的普遍结论。
+- **行业影响**：自研 ASIC 的价值在于围绕模型、内核、服务系统和机架做全栈协同。它不会立即替代通用 GPU，但会改变超大规模推理负载的长期成本结构。
+- **实操建议**：企业选型时继续以真实吞吐、延迟、可用性和总体拥有成本为准，不根据厂商尚未公开的内部测试数字预判 API 价格。
 
 ---
 
-### 03. [谷歌DeepMind六天走四人，全投Anthropic](#)
-- **发布主体**：Bloomberg / TechCrunch · 06/24
-- **核心事实**：继上周Transformer作者Shazeer投OpenAI后，谷歌DeepMind六天内又走三位核心、全部投奔Anthropic：诺奖得主、AlphaFold负责人John Jumper(6月20)，AI编码负责人Jonas Adler，预训练专家Alexander Pritzel(6月24)。等于AlphaFold核心团队整建制迁移。
-- **行业影响**：Bloomberg揭了内因：Shazeer出走前，他项目的算力被调去伦敦团队。在前沿实验室，算力就是研究速度的硬约束。Anthropic和OpenAI能给、谷歌给不了的，是IPO前股权加上真能拿到的算力。六天四人、还叠加Gemini 3.5 Pro跳票，谷歌的叙事在恶化。
-- **实操与避坑建议**：信号比个人去向更重要：当顶尖研究者集中流向两家、且都在补编码和科学，短期内各家旗舰路线会更趋同——别把『某家独有的人才或架构优势』当成长期护城河。
+### 02. [GPT-5.6 开始限量预览：前沿模型首次按受信名单开放](https://openai.com/index/previewing-gpt-5-6-sol/)
+
+- **发布主体**：OpenAI · 2026-06-26
+- **核心事实**：OpenAI 预览 GPT-5.6 系列，包括旗舰模型 Sol、均衡型 Terra 和低成本 Luna。官方称 Terra 在接近 GPT-5.5 能力的同时成本低一半，并为 Sol 引入更高的 `max` 推理强度与多智能体 `ultra` 模式。
+- **准入机制**：预览期仅通过 API 和 Codex 向一小组受信合作伙伴开放。OpenAI 表示，这一安排来自其与美国政府的协调，同时强调不希望它成为长期默认机制，并计划随后扩大开放。
+- **行业影响**：模型能力之外，“是否能稳定获得访问权”开始成为架构风险。依赖单一闭源模型的关键流水线，需要重新评估地区、账户、合规和供应连续性。
+- **实操建议**：生产系统保留多模型路由、降级策略和开源权重备份，并将模型替换回归测试纳入发布门禁。
 
 ---
 
-### 04. [Anthropic指控阿里2880万次蒸馏攻击](#)
-- **发布主体**：Anthropic / CNBC · 06/25
-- **核心事实**：Anthropic 6月致信美国参议院银行委员会、本周披露：指控阿里巴巴及其通义关联方发起史上最大蒸馏攻击——称对方在4月22到6月5日用约2.5万个伪账号、对Claude跑了2880万次对话，专挖Mythos Preview的agent、编码和长程能力，并指中国政府介入。
-- **行业影响**：先说清楚定性：这是Anthropic单方面的指控，目前没有公开的第三方实锤，阿里巴巴尚未回应。所谓蒸馏，是用海量问答对去逼近强模型的『行为』，并不偷代码或权重。Anthropic今年2月也用同样方式指控过DeepSeek、月之暗面、MiniMax(称约1600万次)。能确定的是另一件事：阿里同期还在起诉五角大楼的『军方公司』认定——中美AI在数据和供应链上的对立在升级。
-- **实操与避坑建议**：把它当一桩『指控』、而不是定案来跟：在有第三方证据前，别据此就认定某个开源模型『被污染』或不安全。真要选型，仍按自己的实测、许可证和合规要求来——别让一封指控信替你做技术判断。
+### 03. [DeepMind 三位核心研究者转投 Anthropic](https://techcrunch.com/2026/06/24/ai-researchers-continue-to-leave-google-for-its-rivals/)
+
+- **来源主体**：TechCrunch 引述 Bloomberg · 2026-06-24
+- **核心事实**：报道显示，Jonas Adler 与 Alexander Pritzel 计划从 Google 转投 Anthropic；数日前，诺贝尔奖得主、AlphaFold 关键研究者 John Jumper 也宣布加入 Anthropic。此前 Noam Shazeer 则离开 Google 前往 OpenAI。
+- **证据边界**：公开报道能够确认的是人员去向，无法据此断言某个团队已“整建制迁移”，也不能仅凭人事变化推导具体模型延期原因。
+- **行业影响**：前沿实验室的竞争已经同时覆盖研究人才、计算资源和股权激励。对外部开发者而言，单次人员流动是信号，但持续交付、产品可用性和生态稳定性更值得长期观察。
 
 ---
 
-## ⚡ 全景快讯扫读
+### 04. [Anthropic 指控阿里关联方大规模提取 Claude 能力](https://www.reuters.com/world/china/anthropic-says-alibaba-illicitly-extracted-claude-ai-model-capabilities-2026-06-24/)
 
-### 📌 模型与产品 · 其余
-
-- **[Gemini Deep Think](#)**：谷歌6月22日上线Gemini 2.5 Pro Deep Think刷强推理分；但3.5 Pro正式版跳票到7月——叠加人才出走势头受挫 *(Google)*
-- **[GPT-5.5-Cyber](#)**：OpenAI与Jalapeño同日发面向网络防御的专用模型——对应Anthropic的安全线 *(OpenAI)*
-- **[Fable 5返回](#)**：从出口管制返回但转入用量计费付费墙、分类器收紧——某些提示回退Opus 4.8，实际可用能力可能低于基准 *(Anthropic)*
-
-### 📌 开源与基准 · 其余
-
-- **[DeepSeek永久降价](#)**：V4-Pro降价转永久、比GPT-5.5输入低5倍；而前沿闭源齐涨价(GPT-5.5翻倍)——一边涨一边降，中国开源立价格地板 *(DeepSeek)*
-- **[FrontierCode](#)**：Cognition新编码基准测PR是否『生产可用』：Fable 5领先46.3分 > Opus 4.8 34.3 > GPT-5.5 25.5 *(Cognition)*
-- **[编码市场93亿](#)**：Mordor估AI编码工具2026约$93亿、年增26%：Claude Code约40%、Codex约21%——企业刻意只签一年 *(Mordor)*
-
-### 📌 行业与人事 · 其余
-
-- **[阿里诉五角大楼](#)**：起诉美国防部、要求撤销『中国军方公司』认定——同名单含百度/比亚迪/宇树等191实体，与蒸馏指控双重承压 *(Reuters)*
-- **[Broadcom造王者](#)**：定制AI硅背后都是博通：谷歌TPU/OpenAI Jalapeño/Meta MTIA/字节谈判中——推理被ASIC蚕食 *(CNBC)*
-- **[2月也指控三家](#)**：蒸馏指控非首次：2月Anthropic也对DeepSeek/月之暗面/MiniMax提过、称约1600万次——但同样未经第三方证实 *(Anthropic)*
-- **[Seedcamp 3.2亿](#)**：欧洲老牌早期基金募3.2亿美元新基金、进军美国——AI早期投资仍热 *(TechCrunch)*
+- **来源主体**：Anthropic 致美国参议员信函 / Reuters · 2026-06-24
+- **核心事实**：Anthropic 指控与阿里巴巴及 Qwen 实验室有关联的操作者，在 2026 年 4 月 22 日至 6 月 5 日期间，通过近 2.5 万个欺诈账户与 Claude 进行超过 2880 万次交互，用于提取软件工程、智能体推理等能力。
+- **证据边界**：这些数字来自 Anthropic 的单方指控。报道发布时，阿里巴巴尚未公开回应，也没有独立第三方完成技术归因，因此应把它称为“指控”，而不是已经定案的攻击事实。
+- **背景**：Anthropic 在 2 月曾公开指控 DeepSeek、Moonshot 与 MiniMax 通过约 2.4 万个欺诈账户产生超过 1600 万次交互。模型蒸馏本身是常见训练方法，争议焦点在于访问授权、服务条款和能力提取方式。
+- **实操建议**：模型提供方需要加强异常账户聚类、速率控制和跨账户行为检测；使用方则应审查训练数据来源、API 条款与模型许可证，避免把未经授权的输出直接纳入训练管线。
 
 ---
 
-## 🎯 下周继续盯什么
+## ⚡ 两条延伸信号
+
+- **[Anthropic 公开其蒸馏攻击检测方法](https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks)**：官方披露了账户协同、请求元数据、基础设施指标和提示模式等归因信号，也再次说明“蒸馏技术”与“未经授权的能力提取”不是同一个概念。
+- **[Seedcamp 募集 3.2 亿美元新基金](https://techcrunch.com/2026/06/22/seedcamp-raises-320m-for-its-new-fund-to-expand-its-us-footprint/)**：这家长期聚焦欧洲早期项目的基金计划扩大美国布局，说明 AI 创业投资仍在跨区域寻找项目和退出机会。
+
+---
+
+## 🎯 接下来继续盯什么
+
+1. **Jalapeño 的真实部署数据**：关注初步部署后的吞吐、能效、可靠性和成本，而不是未经公开验证的降本口号。
+2. **GPT-5.6 的开放范围**：观察受信预览何时转为普遍可用，以及不同地区和产品入口是否保持一致。
+3. **模型蒸馏的证据标准**：关注是否出现可供第三方复核的技术材料、当事方回应及服务条款层面的后续处理。
+
+## 相关观看入口
+
+- [Bilibili：AI 周报 VOL.27](https://www.bilibili.com/video/BV1UpTN67ES1/)
+
+> 资料核验日期：2026-08-23。涉及人事与争议性事件均保留报道来源和证据边界。
