@@ -12,7 +12,7 @@ npm run dev
 生产构建：
 
 ```bash
-PUBLIC_SITE_URL=https://your-domain.example npm run build
+PUBLIC_SITE_URL=https://ai.aifuli.dev npm run build
 ```
 
 构建产物位于 `dist/`。
@@ -52,7 +52,7 @@ python3 scripts/export_blog_article.py \
 - Root directory：留空（仓库根目录）
 - Build command：`npm run build`
 - Deploy command：`npx wrangler deploy`
-- Environment variable：`PUBLIC_SITE_URL=https://你的正式域名`
+- Environment variable：`PUBLIC_SITE_URL=https://ai.aifuli.dev`
 - Node.js：建议使用当前 LTS
 
 `wrangler.jsonc` 已将 `dist/` 声明为纯静态资源目录，不需要 Worker 后端代码。项目连接 GitHub 后，生产分支建议设为 `main`；域名在 Worker 的 Settings / Domains & Routes 中绑定。
