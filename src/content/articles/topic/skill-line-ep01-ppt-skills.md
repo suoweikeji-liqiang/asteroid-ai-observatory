@@ -5,6 +5,8 @@ publishedAt: "2026-07-12"
 kind: "topic"
 slug: "skill-line-ep01-ppt-skills"
 tags: ["PPT技能", "AI演示文稿", "PowerPoint", "生产力实测"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1wvNV6sEUD/"
 featured: false
 draft: false
 readingMinutes: 9

@@ -5,6 +5,8 @@ publishedAt: "2026-06-06"
 kind: "topic"
 slug: "rl-infrastructure-post-training"
 tags: ["强化学习", "后训练", "分布式训练", "GPU"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1RyJw6UEB4/"
 featured: false
 draft: false
 readingMinutes: 8

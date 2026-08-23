@@ -5,6 +5,8 @@ publishedAt: "2026-06-06"
 kind: "topic"
 slug: "agentic-coding-context-management"
 tags: ["智能编码", "上下文工程", "代码搜索", "代码评审"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1WjE26XE1v/"
 featured: false
 draft: false
 readingMinutes: 8

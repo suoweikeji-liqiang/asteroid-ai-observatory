@@ -5,6 +5,8 @@ publishedAt: "2026-07-03"
 kind: "topic"
 slug: "tier-review-ep03-knowledge-rag"
 tags: ["RAG", "知识库", "RAGFlow", "向量检索", "工具测评"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1UTT66LEe1/"
 featured: false
 draft: false
 readingMinutes: 8

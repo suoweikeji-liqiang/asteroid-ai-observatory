@@ -5,6 +5,8 @@ publishedAt: "2026-05-20"
 kind: "topic"
 slug: "openclaw-hermes-openhuman"
 tags: ["OpenClaw", "Hermes Agent", "OpenHuman", "个人智能体"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1GzLx6iEaF/"
 featured: false
 draft: false
 readingMinutes: 10

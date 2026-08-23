@@ -7,6 +7,8 @@ kind: "topic"
 slug: "tier-review-ep06-agent-os"
 eyebrow: "Tier Review · Agent OS"
 tags: ["Agent-OS", "OpenClaw", "智能体", "安全"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV13pMP6pEs8/"
 featured: false
 draft: false
 readingMinutes: 8

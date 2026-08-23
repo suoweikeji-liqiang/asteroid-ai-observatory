@@ -7,6 +7,8 @@ kind: "topic"
 slug: "tier-review-ep08-cloud-coding-agent"
 eyebrow: "Tier Review · 云端 Coding Agent"
 tags: ["Coding-Agent", "云开发", "GitHub", "OpenHands"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1UtML6mEdc/"
 featured: false
 draft: false
 readingMinutes: 8

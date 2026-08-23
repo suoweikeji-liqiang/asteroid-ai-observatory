@@ -5,6 +5,8 @@ publishedAt: "2026-06-20"
 kind: "topic"
 slug: "agent-sandbox-evolution-history"
 tags: ["Agent沙箱", "容器安全", "gVisor", "MicroVM"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1KKj86zEWU/"
 featured: false
 draft: false
 readingMinutes: 9

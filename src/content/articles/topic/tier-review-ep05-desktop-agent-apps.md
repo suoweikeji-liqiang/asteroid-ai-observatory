@@ -7,6 +7,8 @@ kind: "topic"
 slug: "tier-review-ep05-desktop-agent-apps"
 eyebrow: "Tier Review · 桌面 Agent"
 tags: ["Desktop-Agent", "AI-工具", "选型指南"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1bmTb6EEeY/"
 featured: false
 draft: false
 readingMinutes: 8

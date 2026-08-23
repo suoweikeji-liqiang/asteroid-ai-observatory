@@ -7,6 +7,8 @@ kind: "topic"
 slug: "tier-review-ep10-agent-frameworks"
 eyebrow: "Tier Review · Agent 框架"
 tags: ["Agent-Framework", "LangGraph", "Agents-SDK", "工程架构"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1MaNJ6DEAY/"
 featured: false
 draft: false
 readingMinutes: 9

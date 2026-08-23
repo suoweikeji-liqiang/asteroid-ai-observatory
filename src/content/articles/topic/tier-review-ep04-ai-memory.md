@@ -5,6 +5,8 @@ publishedAt: "2026-07-04"
 kind: "topic"
 slug: "tier-review-ep04-ai-memory"
 tags: ["AI记忆", "Mem0", "Zep", "MemGPT", "状态管理"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1zUTn61EY8/"
 featured: false
 draft: false
 readingMinutes: 8

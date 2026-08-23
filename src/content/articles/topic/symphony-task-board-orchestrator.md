@@ -5,6 +5,8 @@ publishedAt: "2026-05-18"
 kind: "topic"
 slug: "symphony-task-board-orchestrator"
 tags: ["Symphony", "Coding Agent", "任务编排", "Codex"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1cELA6QEvo/"
 featured: false
 draft: false
 readingMinutes: 8

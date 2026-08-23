@@ -5,6 +5,8 @@ publishedAt: "2026-06-06"
 kind: "topic"
 slug: "grab-multi-agent-production-patterns"
 tags: ["多智能体", "数据平台", "LangGraph", "工程支持"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1dyJw6UEiM/"
 featured: false
 draft: false
 readingMinutes: 8

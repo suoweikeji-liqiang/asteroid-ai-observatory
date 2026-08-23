@@ -5,6 +5,8 @@ publishedAt: "2026-07-01"
 kind: "topic"
 slug: "tier-review-ep01-coding-tools"
 tags: ["AI编程", "Cursor", "Windsurf", "Claude-Code", "工具横评"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1xLTg6tECi/"
 featured: false
 draft: false
 readingMinutes: 9

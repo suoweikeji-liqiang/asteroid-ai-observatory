@@ -7,6 +7,8 @@ kind: "topic"
 slug: "tier-review-ep07-ai-search"
 eyebrow: "Tier Review · AI 搜索"
 tags: ["AI-搜索", "事实核查", "信息检索"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1SwMv6TELU/"
 featured: false
 draft: false
 readingMinutes: 9

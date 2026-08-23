@@ -5,6 +5,8 @@ publishedAt: "2026-06-14"
 kind: "topic"
 slug: "opensquilla-meta-skill-runtime"
 tags: ["OpenSquilla", "MetaSkill", "模型路由", "智能体"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1x6Jc6YEq4/"
 featured: false
 draft: false
 readingMinutes: 8

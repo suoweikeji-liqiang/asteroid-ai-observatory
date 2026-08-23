@@ -5,6 +5,8 @@ publishedAt: "2026-07-16"
 kind: "topic"
 slug: "skill-line-ep03-search-tools"
 tags: ["AI搜索", "事实核验", "MCP", "信息检索"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV16VKj6FEWU/"
 featured: false
 draft: false
 readingMinutes: 8

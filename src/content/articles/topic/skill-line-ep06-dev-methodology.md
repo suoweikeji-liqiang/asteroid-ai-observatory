@@ -5,6 +5,8 @@ publishedAt: "2026-07-18"
 kind: "topic"
 slug: "skill-line-ep06-dev-methodology"
 tags: ["开发方法论", "工程范式", "AI编码", "Agent Skills"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV18HNB6gEqW/"
 featured: false
 draft: false
 readingMinutes: 11

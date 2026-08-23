@@ -5,6 +5,8 @@ publishedAt: "2026-06-22"
 kind: "topic"
 slug: "gstack-judgment-as-code"
 tags: ["gstack", "Claude Code", "技能", "软件工程"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1YbjU6vEr9/"
 featured: false
 draft: false
 readingMinutes: 8

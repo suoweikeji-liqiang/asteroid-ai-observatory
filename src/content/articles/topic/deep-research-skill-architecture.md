@@ -5,6 +5,8 @@ publishedAt: "2026-07-14"
 kind: "topic"
 slug: "deep-research-skill-architecture"
 tags: ["Deep Research", "技能", "多智能体", "事实核查"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1YmKB6jEd7/"
 featured: false
 draft: false
 readingMinutes: 8

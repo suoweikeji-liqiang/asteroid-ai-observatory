@@ -5,6 +5,8 @@ publishedAt: "2026-06-16"
 kind: "topic"
 slug: "loop-engineering-for-agents"
 tags: ["Loop工程", "智能体循环", "验证器", "状态管理"]
+video:
+  bilibili: "https://www.bilibili.com/video/BV1dYju6bEJT/"
 featured: false
 draft: false
 readingMinutes: 8
