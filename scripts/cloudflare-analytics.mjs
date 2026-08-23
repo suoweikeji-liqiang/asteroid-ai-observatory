@@ -62,8 +62,9 @@ function summarize(groups, since, until) {
   let visits = 0;
 
   for (const group of groups) {
-    const count = Number(group.count ?? 0);
-    const groupVisits = Number(group.sum?.visits ?? 0);
+    const sampleInterval = Number(group.avg?.sampleInterval ?? 1);
+    const count = Number(group.count ?? 0) * sampleInterval;
+    const groupVisits = Number(group.sum?.visits ?? 0) * sampleInterval;
     pageViews += count;
     visits += groupVisits;
     increment(paths, group.dimensions?.requestPath, count);
@@ -133,10 +134,17 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
     viewer {
       accounts(filter: { accountTag: $accountId }) {
         rumPageloadEventsAdaptiveGroups(
-          filter: { datetime_gt: $since, datetime_leq: $until, siteTag: $siteTag }
+          filter: {
+            AND: [
+              { datetime_geq: $since, datetime_leq: $until }
+              { bot: 0 }
+              { siteTag_in: [$siteTag] }
+            ]
+          }
           limit: 5000
         ) {
           count
+          avg { sampleInterval }
           dimensions {
             requestPath
             countryName
