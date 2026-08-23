@@ -1,0 +1,50 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { articleUrl, formatDate, kindMeta } from "../../lib/content";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles", ({ data }) => !data.draft);
+  return articles.map((article) => {
+    const url = articleUrl(article).split("/").filter(Boolean);
+    return { params: { kind: url[0], slug: url[1] }, props: { article } };
+  });
+}
+
+interface Props { article: CollectionEntry<"articles"> }
+const { article } = Astro.props;
+const { Content, headings } = await render(article);
+const meta = kindMeta[article.data.kind];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: article.data.title,
+  description: article.data.description,
+  datePublished: article.data.publishedAt.toISOString(),
+  dateModified: (article.data.updatedAt ?? article.data.publishedAt).toISOString(),
+  inLanguage: "zh-CN",
+  mainEntityOfPage: new URL(articleUrl(article), Astro.site).toString()
+};
+---
+<BaseLayout title={article.data.title} description={article.data.description} image={article.data.cover} type="article">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <header class="article-header shell">
+    <div class="article-meta"><span class="kind-pill">{meta.index}</span><span>{article.data.eyebrow ?? meta.label}</span>{article.data.issue && <span>· {article.data.issue}</span>}</div>
+    <h1>{article.data.title}</h1>
+    <p class="article-deck">{article.data.description}</p>
+    <div class="article-meta"><time datetime={article.data.publishedAt.toISOString()}>发布于 {formatDate(article.data.publishedAt)}</time>{article.data.updatedAt && <span>· 更新于 {formatDate(article.data.updatedAt)}</span>}<span>· {article.data.readingMinutes ?? 8} 分钟阅读</span></div>
+    {article.data.video && <div class="article-actions">{article.data.video.bilibili && <a class="action-link" href={article.data.video.bilibili} target="_blank" rel="noreferrer">在 Bilibili 观看 ↗</a>}{article.data.video.youtube && <a class="action-link" href={article.data.video.youtube} target="_blank" rel="noreferrer">在 YouTube 观看 ↗</a>}</div>}
+  </header>
+  {article.data.cover && <img class="article-cover" src={article.data.cover} alt={article.data.title} />}
+  <div class="shell article-layout">
+    <aside class="article-rail">
+      <strong>OBSERVATION INDEX</strong>
+      <div>{meta.label}</div><div>{formatDate(article.data.publishedAt)}</div><div>{article.data.tags.length} 个主题标签</div>
+      {headings.length > 0 && <p><a href="#article-body">开始阅读 ↓</a></p>}
+    </aside>
+    <article id="article-body" class="prose" data-pagefind-body>
+      <Content />
+      <div class="tag-row">{article.data.tags.map((tag) => <a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>#{tag}</a>)}</div>
+    </article>
+  </div>
+</BaseLayout>

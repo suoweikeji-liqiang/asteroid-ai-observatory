@@ -1,0 +1,11 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleListing from "../../components/ArticleListing.astro";
+import { byNewest } from "../../lib/content";
+const articles = (await getCollection("articles", ({ data }) => !data.draft)).sort(byNewest);
+---
+<BaseLayout title="全部归档" description="小行星 AI 观测站的全部周报、专题与日报。">
+  <header class="listing-header"><div class="shell"><div class="kicker">COMPLETE OBSERVATION ARCHIVE</div><h1>全部归档</h1><p>{articles.length} 份公开观测记录。所有内容按发布时间排列，并保留原始来源和后续修订说明。</p></div></header>
+  <section class="shell"><ArticleListing articles={articles} /></section>
+</BaseLayout>

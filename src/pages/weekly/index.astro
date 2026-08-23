@@ -1,0 +1,11 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleListing from "../../components/ArticleListing.astro";
+import { byNewest } from "../../lib/content";
+const articles = (await getCollection("articles", ({ data }) => data.kind === "weekly" && !data.draft)).sort(byNewest);
+---
+<BaseLayout title="AI 周报" description="每周梳理模型、工程、开源、论文与产品变化，画出一周 AI 地图。">
+  <header class="listing-header"><div class="shell"><div class="kicker">WEEKLY SIGNAL MAP</div><h1>AI 周报</h1><p>不是新闻堆叠，而是寻找一周内彼此关联的技术、产品与产业主线：发生了什么，为什么重要，接下来该盯什么。</p></div></header>
+  <section class="shell"><ArticleListing articles={articles} /></section>
+</BaseLayout>

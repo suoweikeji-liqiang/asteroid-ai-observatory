@@ -1,0 +1,17 @@
+---
+import type { Article } from "../lib/content";
+import { articleUrl, formatDate, kindMeta } from "../lib/content";
+
+interface Props { article: Article }
+const { article } = Astro.props;
+const meta = kindMeta[article.data.kind];
+---
+<article class="article-card">
+  <div class="article-meta">
+    <span class="kind-pill">{meta.index}</span>
+    <time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time>
+  </div>
+  <h3><a href={articleUrl(article)}>{article.data.title}</a></h3>
+  <p>{article.data.description}</p>
+  <div class="article-meta"><span>{article.data.readingMinutes ?? 8} MIN READ</span><span>·</span><span>{article.data.tags.slice(0, 2).join(" / ")}</span></div>
+</article>

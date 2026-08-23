@@ -1,0 +1,11 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleListing from "../../components/ArticleListing.astro";
+import { byNewest } from "../../lib/content";
+const articles = (await getCollection("articles", ({ data }) => data.kind === "topic" && !data.draft)).sort(byNewest);
+---
+<BaseLayout title="专题深解读" description="围绕 AI 工程、产品与组织变化进行有证据的专题拆解。">
+  <header class="listing-header"><div class="shell"><div class="kicker">DEEP DIVE / FIELD REPORT</div><h1>专题深解读</h1><p>一次只解决一个问题。打开项目、论文与工程材料，把产品表象下面的工作机制、适用边界和真实代价拆清楚。</p></div></header>
+  <section class="shell"><ArticleListing articles={articles} /></section>
+</BaseLayout>

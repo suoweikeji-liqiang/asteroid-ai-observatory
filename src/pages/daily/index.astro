@@ -1,0 +1,11 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleListing from "../../components/ArticleListing.astro";
+import { byNewest } from "../../lib/content";
+const articles = (await getCollection("articles", ({ data }) => data.kind === "daily" && !data.draft)).sort(byNewest);
+---
+<BaseLayout title="AI 日报" description="记录当天真正值得知道的 AI 产品、模型与工程变化。">
+  <header class="listing-header"><div class="shell"><div class="kicker">DAILY SIGNAL LOG</div><h1>AI 日报</h1><p>面向需要快速跟进变化的读者：保留事实边界、来源链接与行动价值，过滤重复发布和无增量热闹。</p></div></header>
+  <section class="shell"><ArticleListing articles={articles} /></section>
+</BaseLayout>

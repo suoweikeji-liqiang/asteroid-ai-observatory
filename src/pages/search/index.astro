@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout title="搜索" description="搜索小行星 AI 观测站的全部公开内容。">
+  <section class="shell search-page">
+    <div class="kicker">FULL TEXT SEARCH</div>
+    <h1>搜索观测记录</h1>
+    <div id="search"></div>
+  </section>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.PagefindUI) new window.PagefindUI({ element: "#search", showSubResults: true, translations: { placeholder: "搜索专题、模型、项目或关键词…", zero_results: "没有找到 [SEARCH_TERM] 的相关记录" } });
+    });
+  </script>
+</BaseLayout>

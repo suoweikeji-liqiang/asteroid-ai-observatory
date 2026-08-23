@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { articleUrl, byNewest, formatDate, kindMeta } from "../lib/content";
+
+const articles = (await getCollection("articles", ({ data }) => !data.draft)).sort(byNewest);
+const featured = articles.find((article) => article.data.featured) ?? articles[0];
+const latest = articles.filter((article) => article.id !== featured?.id).slice(0, 6);
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <div class="kicker">INDEPENDENT AI FIELD NOTES · EST. 2026</div>
+        <h1>从噪声里，<br />找到真正的<em>信号</em>。</h1>
+        <p class="hero-copy">周报负责画出一周地图，专题负责把一个问题拆到底，日报记录值得立即知道的变化。这里保存视频之外更完整、可检索、可长期引用的 AI 观察。</p>
+      </div>
+      <aside class="orbit-panel" aria-label="观测状态">
+        <div class="orbit-visual" aria-hidden="true"><span class="orbit-ring"></span><span class="orbit-dot"></span></div>
+        <div class="observation">OBSERVATION STATUS: ACTIVE<br />SIGNAL WINDOW: 7D / 30D<br />LANGUAGE: ZH-CN<br />SOURCE MODE: EVIDENCE-FIRST</div>
+      </aside>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="shell">
+      <div class="section-head"><h2>本期重点</h2><a href="/archive/">查看全部观测 →</a></div>
+      <article class="featured-grid">
+        <div class="featured-copy">
+          <div class="article-meta"><span class="kind-pill">{kindMeta[featured.data.kind].index}</span><time>{formatDate(featured.data.publishedAt)}</time>{featured.data.issue && <span>· {featured.data.issue}</span>}</div>
+          <h3><a href={articleUrl(featured)}>{featured.data.title}</a></h3>
+          <p>{featured.data.description}</p>
+          <a class="action-link" href={articleUrl(featured)}>打开完整记录 →</a>
+        </div>
+        <div class="featured-art">
+          {featured.data.cover && <img src={featured.data.cover} alt="" loading="eager" />}
+        </div>
+      </article>
+    </section>
+  )}
+
+  <section class="shell" style="margin-top: 80px">
+    <div class="section-head"><h2>最新观测</h2><a href="/rss.xml">订阅 RSS →</a></div>
+    <div class="card-grid">{latest.map((article) => <ArticleCard article={article} />)}</div>
+  </section>
+</BaseLayout>

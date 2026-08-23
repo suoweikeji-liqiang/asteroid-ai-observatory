@@ -1,0 +1,12 @@
+---
+import ArticleCard from "./ArticleCard.astro";
+import type { Article } from "../lib/content";
+
+interface Props { articles: Article[] }
+const { articles } = Astro.props;
+---
+{articles.length ? (
+  <div class="card-grid listing-grid">
+    {articles.map((article) => <ArticleCard article={article} />)}
+  </div>
+) : <p class="empty-state">这个栏目正在准备第一批观测记录。</p>}
