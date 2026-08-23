@@ -28,7 +28,7 @@ npm run analytics -- --hours 24
 npm run analytics -- --days 7 --markdown
 ```
 
-需要 `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID` 和 `CLOUDFLARE_SITE_TAG`。线上凭据保存在 GitHub Actions Secrets 中。
+需要 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`。线上凭据保存在 GitHub Actions Secrets 中。当前账户只有 `ai.aifuli.dev` 一个 Web Analytics 站点，因此报告按账户查询；如果以后增加其他统计站点，需要再加入域名筛选。
 
 ## 内容模型
 

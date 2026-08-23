@@ -113,7 +113,7 @@ function formatText(report) {
   return lines.join("\n");
 }
 
-async function queryAnalytics({ token, accountId, siteTag, since, until }) {
+async function queryAnalytics({ token, accountId, since, until }) {
   const query = `query WebAnalytics(
     $accountTag: string
     $filter: AccountRumPageloadEventsAdaptiveGroupsFilter_InputObject
@@ -121,10 +121,6 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
   ) {
     viewer {
       accounts(filter: { accountTag: $accountTag }) {
-        sites: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 100, orderBy: [$order]) {
-          count
-          dimensions { siteTag }
-        }
         total: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 1) {
           count
           sum { visits }
@@ -184,13 +180,6 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
   if (!account) {
     throw new Error("Cloudflare Analytics API 未返回目标帐户，请检查 Token 的帐户范围");
   }
-  const activeSiteTags = new Set((account.sites ?? []).map((group) => group.dimensions?.siteTag).filter(Boolean));
-  if (!activeSiteTags.has(siteTag)) {
-    throw new Error("Cloudflare Analytics API 未返回目标 Web Analytics 站点");
-  }
-  if (activeSiteTags.size > 1) {
-    throw new Error("帐户中存在多个活跃 Web Analytics 站点，请先为报告增加域名过滤条件");
-  }
   return account;
 }
 
@@ -206,8 +195,7 @@ function printHelp() {
 
 所需环境变量：
   CLOUDFLARE_API_TOKEN
-  CLOUDFLARE_ACCOUNT_ID
-  CLOUDFLARE_SITE_TAG`);
+  CLOUDFLARE_ACCOUNT_ID`);
 }
 
 async function main() {
@@ -224,7 +212,6 @@ async function main() {
   const data = await queryAnalytics({
     token: requireEnvironment("CLOUDFLARE_API_TOKEN"),
     accountId: requireEnvironment("CLOUDFLARE_ACCOUNT_ID"),
-    siteTag: requireEnvironment("CLOUDFLARE_SITE_TAG"),
     since,
     until,
   });
