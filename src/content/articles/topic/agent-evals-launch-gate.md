@@ -1,15 +1,15 @@
 ---
 title: "智能体上线门禁与回归评测体系：为什么打分板比提示词更重要"
-description: "前沿技术深度调研与架构拆解：全面解析 智能体上线门禁与回归评测体系：为什么打分板比提示词更重要，剖析工程原理与落地实践。"
+description: "从任务、轨迹、最终状态与三类 grader 出发，建立智能体能力评测、回归测试和上线门禁的最小工程闭环。"
 publishedAt: "2026-05-24"
 kind: "topic"
 slug: "agent-evals-launch-gate"
 tags: ["前沿信号", "系统架构", "智能体", "工程实战"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 7
 ---
-## 0-20 秒：反常识开场
+## Agent 评测不是排行榜，而是上线门禁
 
 如果你最近在做 Agent，我建议你先别急着问“哪个模型更强”。
 
@@ -17,7 +17,7 @@ readingMinutes: 7
 
 Anthropic 这篇《Demystifying evals for AI agents》，我觉得最适合被转译成一句工程话：Agent 评测不是排行榜，而是上线门禁。
 
-## 20-60 秒：来源和事实
+## 来源与关键概念
 
 资料来自 Anthropic Engineering，文章发表于 2026 年 1 月 9 日。
 
@@ -29,7 +29,7 @@ Anthropic 在文中定义了几个关键词：task 是测试任务，trial 是�
 
 这组概念听起来抽象，但落到工程里非常直接：你不能只看 Agent 说了什么，还要看它到底把系统改成了什么样。
 
-## 60-150 秒：机制一——看轨迹，更要看最终状态
+## 机制一：看轨迹，更要看最终状态
 
 第一个机制，叫 transcript 和 outcome 分离。
 
@@ -45,7 +45,7 @@ transcript 是 Agent 的运行记录：它说了什么，调用了哪些工具�
 
 所以 Agent 评测的第一条，不是问它解释得好不好，而是问系统状态对不对。
 
-## 150-250 秒：机制二——grader 不是一个模型，而是一组门禁
+## 机制二：grader 不是一个模型，而是一组门禁
 
 第二个机制，是 grader 组合。
 
@@ -61,7 +61,7 @@ human grader 是金标准，但慢、贵、不可能覆盖所有 case。它更�
 
 一个内容生产线的例子：脚本检查来源链接、敏感词、字数和结构；模型检查标题是否夸大、论证是否跳跃；人工最后判断选题价值和观众节奏。
 
-## 250-350 秒：机制三——能力评测和回归评测要分开
+## 机制三：能力评测和回归评测要分开
 
 第三个机制，是 capability eval 和 regression eval 分开。
 
@@ -75,7 +75,7 @@ human grader 是金标准，但慢、贵、不可能覆盖所有 case。它更�
 
 所以，Agent 上线前跑回归 eval；Agent 扩权前跑更严格的边界 eval；模型升级前后，要跑同一批任务做对比。
 
-## 350-460 秒：机制四——最好的 eval 来自真实失败
+## 机制四：最好的 eval 来自真实失败
 
 Anthropic 文章里有一个很接地气的建议：不要等你有几百个任务才开始。早期可以从 20-50 个简单任务起步，而且最好来自真实失败、人工检查、bug tracker、support queue。
 
@@ -93,7 +93,7 @@ Anthropic 文章里有一个很接地气的建议：不要等你有几百个任�
 
 这就是 eval-driven development。不是先等 Agent 强了再评测，而是先用评测定义你希望它会什么。
 
-## 460-560 秒：普通团队的最小上线门禁
+## 普通团队的最小上线门禁
 
 如果今天就要做，我建议用六步。
 
@@ -109,7 +109,7 @@ Anthropic 文章里有一个很接地气的建议：不要等你有几百个任�
 
 第六，定期读 transcript。因为 eval 本身也会错。任务含糊、grader 太死、环境状态污染，都会让评测失真。
 
-## 560-650 秒：连接到你的场景
+## 如何连接到真实业务
 
 这件事和你的内容生产线很直接。你现在真正需要的不是“稿件好像还行”，而是每个发布包都有证据：来源完整、标题不过界、脚本有结构、视频不露生产痕迹、事实风险明确。
 
@@ -119,7 +119,7 @@ Anthropic 文章里有一个很接地气的建议：不要等你有几百个任�
 
 所以这期不是一篇“评测方法论”而已，它其实是在讲 Agent 进入真实业务之前，应该补上的工程地基。
 
-## 650 秒后：收束
+## 收束
 
 最后给一个判断：Agent 工程化的分水岭，不是有没有更聪明的模型，而是有没有证据证明它稳定、可控、可回滚、值得扩权。
 
@@ -131,6 +131,8 @@ Anthropic 文章里有一个很接地气的建议：不要等你有几百个任�
 
 ## 参考资料与延伸阅读
 
-- 官方技术文档、开源代码仓库与架构设计白皮书。
+- [Anthropic：Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+- [LangChain：Agent trajectory evaluations](https://docs.langchain.com/langsmith/trajectory-evals)
+- [OpenAI：A practical guide to building AI agents](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)
 
 > 资料核验日期：2026-08-23。

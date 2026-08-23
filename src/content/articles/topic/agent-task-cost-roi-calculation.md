@@ -1,29 +1,14 @@
 ---
 title: "智能体单任务成本与 ROI 精算：算力账单、延迟与商业化盈亏平衡点"
-description: "前沿技术深度调研与架构拆解：全面解析 智能体单任务成本与 ROI 精算：算力账单、延迟与商业化盈亏平衡点，剖析工程原理与落地实践。"
+description: "结合 Databricks 私有代码库实测，拆解模型单价、上下文效率、Harness、重试与通过率如何共同决定智能体的真实任务成本。"
 publishedAt: "2026-07-20"
 kind: "topic"
 slug: "agent-task-cost-roi-calculation"
 tags: ["前沿信号", "系统架构", "智能体", "工程实战"]
 featured: false
-draft: true
+draft: false
 readingMinutes: 5
 ---
-## TTS 配置
-
-- backend: MiMo
-- model: `mimo-v2.5-tts`
-- voice: `茉莉`
-- style_tag: `女性 自然 可信 科技解读`
-- audio_speed_multiplier: 1.0
-
----
-
-## 逐页 narration
-
-
----
-
 ## 01. 便宜 Token，未必便宜任务
 
 一个模型的 Token 单价更低，不代表它完成任务更便宜。因为工程团队最终购买的不是一百万个 Token，而是一个通过测试、可以合并的结果。这期只解决一个问题：AI 编程工具的成本，应该怎么按“任务”算，而不是按价目表猜。
@@ -114,7 +99,7 @@ Databricks 还观察到，内部任务大致形成不同能力层。改配置、
 - 发布日期：2026-07-08
 - 作者：Vinay Gaba、Ankit Mathur、Rishabh Singh、Patrick Wendell、Matei Zaharia
 - 原始标题：*Benchmarking Coding Agents on Databricks’ Multi-Million Line Codebase*
-- 原文：https://www.databricks.com/blog/benchmarking-coding-agents-databricks-multi-million-line-codebase
+- [Databricks：Benchmarking Coding Agents on Databricks’ Multi-Million Line Codebase](https://www.databricks.com/blog/benchmarking-coding-agents-databricks-multi-million-line-codebase)
 
 使用边界：文章基于 Databricks 的私有代码库与内部工程任务；视频保留原始数据，但不把结果外推成通用模型排名。
 
