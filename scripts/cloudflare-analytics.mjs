@@ -163,7 +163,6 @@ async function queryAnalytics({ token, accountId, siteTag, since, until }) {
           AND: [
             { datetime_geq: since, datetime_leq: until },
             { bot: 0 },
-            { siteTag_in: [siteTag] },
           ],
         },
         order: "count_DESC",
