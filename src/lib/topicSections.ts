@@ -77,6 +77,7 @@ const architectureTopics = new Set([
   "agent-sdk-paradigm-shift",
   "deepseek-harness-architecture",
   "harness-engineering-principles",
+  "ai-agent-harness-from-model-call-to-action",
   "llm-memory-state-layer",
   "long-running-harness-pge",
   "loop-engineering-for-agents",
