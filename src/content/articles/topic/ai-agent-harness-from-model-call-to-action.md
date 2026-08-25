@@ -1,5 +1,5 @@
 ---
-title: "AI Agent 为什么需要 Harness？从一次模型调用到可靠行动"
+title: "AI Agent Harness 深度解析：模型会回答，系统才会行动"
 description: "模型只负责一次判断；Harness 负责上下文、工具、状态、循环、权限与恢复，Agent 才可能完成跨步骤目标。"
 publishedAt: "2026-08-25"
 kind: "topic"
@@ -160,7 +160,7 @@ Guardrail 是多层防线中的一层，不是让任意自主行为自动变安�
 
 ### 相关内容
 
-- [Bilibili 完整视频：AI Agent为什么需要Harness？](https://www.bilibili.com/video/BV1vbhu6AEbM/)
+- [Bilibili 完整视频：AI Agent Harness 深度解析](https://www.bilibili.com/video/BV1vbhu6AEbM/)
 - [Harness 工程：模型之外，智能体如何可靠执行](/stories/harness-engineering-principles/)
 - [OpenAI Codex Harness 深度解析](/stories/openai-codex-harness-architecture/)
 
